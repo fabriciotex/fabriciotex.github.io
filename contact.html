@@ -10,6 +10,9 @@
       Filename: index.html
    -->
 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title>The Pub</title>
 	<link rel="stylesheet" href="app.css">
 	<script src="modernizr.custom.05819.js"></script>
@@ -34,44 +37,42 @@
 	</header>
 
 	<main>
+
+		<!-- Cover image -->
+		<section id="contact" class="cover">
+			<div class="cover-text">
+				<h2>Make a Reservation</h2>
+				<p>Call your friends and let us know when you are coming!</p>
+			</div>
+		</section>
+
+		<!-- Links to other pages -->
+
 		<article>
-
-			<!-- Cover image -->
-			<section id="contact" class="cover">
-				<div class="cover-text">
-					<h1>Make a Reservation</h1>
-					<p>Call your friends and let us know when you are coming!</p>
+			<h2>Talk to us!</h2>
+			<div class="row">
+				<div class="col2">
+					<p><a href="mailto:email@email.com">email@email.com</a></p>
+					<p><a href="tel:9999999999">999 999 9999</a></p>
+					<p><a href="skype:skypename?call">skypename</a></p>
 				</div>
-			</section>
 
-			<!-- Links to other pages -->
-			<section>
-				<div class="row">
-					<div class="col2">
-						<h3>Talk to us!</h3>
-						<p><a href="mailto:email@email.com">email@email.com</a></p>
-						<p><a href="tel:9999999999">999 999 9999</a></p>
-						<p><a href="skype:skypename?call">skypename</a></p>
-					</div>
-
-					<div class="col2">
-						<form action="#" method="post">
-							<label for="name">Name<sup>*</sup></label>
-							<input type="text" name="name" id="name" placeholder="John Doe" required="">
-							<label for="email">Email<sup>*</sup></label>
-							<input type="email" name="email" id="email" placeholder="jdoe@email.com" required="">
-							<label for="message">Message</label>
-							<textarea name="message" id="message" placeholder="Hello!" rows="5"></textarea>
-							<p>*Fields required.</p>
-							<button type="submit" name="submit" id="submit">Send message!</button>
-							<div class="clear"></div>
-							<div class="clearfix"></div>
-						</form>
-					</div>
-
+				<div class="col2">
+					<form action="#" method="post">
+						<label for="name">Name<sup>*</sup></label>
+						<input type="text" name="name" id="name" placeholder="John Doe" required="">
+						<label for="email">Email<sup>*</sup></label>
+						<input type="email" name="email" id="email" placeholder="jdoe@email.com" required="">
+						<label for="message">Message</label>
+						<textarea name="message" id="message" placeholder="Hello!" rows="5"></textarea>
+						<p>*Fields required.</p>
+						<button type="submit" name="submit" id="submit">Send message!</button>
+						<div class="clear"></div>
+						<div class="clearfix"></div>
+					</form>
 				</div>
-			</section>
 
+			</div>
 		</article>
 
 	</main>
@@ -79,7 +80,7 @@
 	<!-- Website footer -->
 	<footer>
 		<!-- Website logo -->
-		<h1><a href="index.html">The Pub</a></h1>
+		<h2><a href="index.html">The Pub</a></h2>
 
 		<!-- Secondary navigation bar -->
 		<nav>
