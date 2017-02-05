@@ -16,7 +16,7 @@ Filename: app.css
 }
 
 
-/* Structure elements */
+/* Structure */
 
 html,
 body {
@@ -111,17 +111,17 @@ header nav a.active {
 
 /* Article */
 
+article {
+	clear: both;
+	padding-top: 20px;
+}
+
 article h2 {
-	margin: 10px;
 	border-bottom: 2px solid #fc3;
 }
 
 
-/* Section */
-
-section {
-	clear: both;
-}
+/* Cover */
 
 .cover {
 	background-size: cover;
@@ -160,6 +160,9 @@ section {
 #contact {
 	background: url('img/contact.jpg') center center no-repeat;
 }
+
+
+/* Buttons */
 
 .btn {
 	text-align: center;
@@ -221,6 +224,9 @@ form p {
 	cursor: pointer;
 }
 
+
+/* Clearfix */
+
 .clearfix {
 	clear: both;
 }
@@ -266,23 +272,26 @@ footer p a {
 	color: #aaa;
 }
 
+
+/* Responsive to under 768px width devices */
+
 @media only screen and ( max-width: 768px) {
-	/* Change the nav height and alignment */
+	/* Navs */
 	nav {
 		text-align: center;
 	}
-	/* Remove float from the nav h1 and ul */
 	nav ul,
 	footer h2 a,
 	footer nav {
 		float: none;
 	}
-	/* Display the nav list items as a block with a little distance between them */
 	nav li {
 		display: block;
-		margin: 10px;
+		margin: 10px 0;
 	}
-	/* Change the font size for the cover heading */
+	nav a {
+		display: block;
+	}
 	.cover h1 {
 		font-size: 40px;
 	}
@@ -297,24 +306,9 @@ footer p a {
 		background: #fc3;
 		color: #222;
 	}
-	/* Change the img class margin and to display in the center of the page */
-	.img {
-		margin: -30px auto;
-		display: table-cell;
-	}
-	/* Change the about img size */
-	#aboutImg {
-		width: 50%;
-	}
-	/* Change the anchor point to fill the whole width of the page and grow in height */
-	.more {
+	#submit {
+		background: #fc3;
 		width: 100%;
-		height: 50px;
-		line-height: 50px;
-		margin-top: 5px;
-	}
-	/* Approximate the form to the table */
-	form {
-		margin-top: -50px;
+		color: #222;
 	}
 }
