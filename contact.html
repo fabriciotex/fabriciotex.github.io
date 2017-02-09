@@ -60,9 +60,12 @@
 				<div class="col2">
 					<form action="#" method="post">
 						<label for="name">Name<sup>*</sup></label>
-						<input type="text" name="name" id="name" placeholder="John Doe" required="">
+						<input type="text" name="name" id="name" placeholder="John Doe" required>
 						<label for="email">Email<sup>*</sup></label>
-						<input type="email" name="email" id="email" placeholder="jdoe@email.com" required="">
+						<input type="email" name="email" id="email" placeholder="jdoe@email.com" required>
+						<label for="guests">Number of Guests <small><em>(You and your friends!)</em></small></label>
+						<input type="number" name="guests" id="guests" min="0">
+						<p id="numTables" class="warning"></p>
 						<label for="message">Message</label>
 						<textarea name="message" id="message" placeholder="Hello!" rows="5"></textarea>
 						<p>*Fields required.</p>
@@ -96,6 +99,7 @@
 		<!-- Copyright information -->
 		<p><small>Made with &hearts; by <a href="index.html">fabriciotex</a></small></p>
 	</footer>
+	<script src="app.js"></script>
 </body>
 
 </html>

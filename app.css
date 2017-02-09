@@ -210,6 +210,13 @@ form p {
 	font-size: 0.7em;
 }
 
+.warning {
+	background: #fc3;
+	padding: 10px;
+	color: #222;
+	margin: 0 0 10px 0;
+}
+
 #submit {
 	float: right;
 	padding: 10px;
