@@ -1,3 +1,13 @@
+/* The Pub Website
+
+Author: Fabricio Teixeira
+Date:		02/08/2017
+
+Filename: app.js
+
+*/
+
+
 // warning about number of tables reserved
 var warning = document.getElementById("numTables");
 
