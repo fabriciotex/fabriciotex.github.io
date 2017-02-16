@@ -210,11 +210,18 @@ form p {
 	font-size: 0.7em;
 }
 
+form input[type="radio"] {
+	width: auto;
+	display: inline-block;
+	margin-left: 10px;
+}
+
 .warning {
 	background: #fc3;
 	padding: 10px;
 	color: #222;
 	margin: 0 0 10px 0;
+	display: none;
 }
 
 #submit {

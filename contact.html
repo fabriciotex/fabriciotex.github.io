@@ -63,14 +63,27 @@
 						<input type="text" name="name" id="name" placeholder="John Doe" required>
 						<label for="email">Email<sup>*</sup></label>
 						<input type="email" name="email" id="email" placeholder="jdoe@email.com" required>
-						<label for="guests">Number of Guests <small><em>(You and your friends!)</em></small></label>
-						<input type="number" name="guests" id="guests" min="0">
+
+						<label>Purpose of contact<sup>*</sup></label>
+						<input type="radio" id="reservationRadio" name="purpose" value="reservation" checked> Reservation
+						<input type="radio" id="contactRadio" name="purpose" value="contact"> Contact
+
+						<div id="guestsField">
+							<label for="guests">Number of Guests <small><em>(You and your friends!)</em></small></label>
+							<input type="number" name="guests" id="guests" min="0">
+						</div>
+
+						<div id="subjectField">
+							<label for="subject">Subject</label>
+							<input type="text" name="subject" id="subject">
+						</div>
+
 						<p id="numTables" class="warning"></p>
+						<div class="clearfix"></div>
 						<label for="message">Message</label>
 						<textarea name="message" id="message" placeholder="Hello!" rows="5"></textarea>
 						<p>*Fields required.</p>
 						<button type="submit" name="submit" id="submit">Send message!</button>
-						<div class="clear"></div>
 						<div class="clearfix"></div>
 					</form>
 				</div>

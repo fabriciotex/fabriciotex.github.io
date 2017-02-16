@@ -35,14 +35,58 @@ function resetForm() {
 	document.getElementById("email").value = "";
 	document.getElementById("guests").value = 0;
 	document.getElementById("message").value = "";
+	document.getElementById("guestsField").style.display = "none";
+	document.getElementById("subjectField").style.display = "none";
 	calcTables();
 	createEventListeners();
+	checkPurpose();
 }
 
 // create event listeners
 function createEventListeners() {
-	document.getElementById("guests").addEventListener("change", calcTables, false);
+	if (document.addEventListener) {
+		document.getElementById("guests").addEventListener("change", calcTables, false);
+	} else if (document.attachEvent) {
+		document.getElementById("guests").attachEvent("onchange", calcTables);
+	}
 }
 
 // resets form inputs
-window.addEventListener("load", resetForm, false);
+if (document.addEventListener) {
+	window.addEventListener("load", resetForm, false);
+} else if (document.attachEvent) {
+	window.attachEvent("onload", resetForm);
+}
+
+// checks purpose of the form
+function checkPurpose() {
+	if (reserve.checked) {
+		// if reservationRadio is selected show only the fields that deal with reservation information
+		document.getElementById("guestsField").style.display = "block";
+		document.getElementById("subjectField").style.display = "none";
+		document.getElementById("subject").value = "Reservation";
+	} else if (contact.checked) {
+		// if contactRadio is selected show only the fields that deal with contact information
+		document.getElementById("guestsField").style.display = "none";
+		document.getElementById("subjectField").style.display = "block";
+		document.getElementById("subject").value = "";
+	}
+}
+
+// get radio buttons
+var reserve = document.getElementById("reservationRadio");
+var contact = document.getElementById("contactRadio");
+
+// check form purpose for reservationRadio
+if (document.addEventListener) {
+	reserve.addEventListener("change", checkPurpose, false);
+} else if (document.attachEvent) {
+	reserve.attachEvent("onchange", checkPurpose);
+}
+
+// check form purpose for contactRadio
+if (document.addEventListener) {
+	contact.addEventListener("change", checkPurpose, false);
+} else if (document.attachEvent) {
+	contact.attachEvent("onchange", checkPurpose);
+}
