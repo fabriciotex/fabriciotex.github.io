@@ -1,54 +1,171 @@
 /* The Pub Website
 
 Author: Fabricio Teixeira
-Date:		02/08/2017
+Date:		02/24/2017
 
 Filename: app.js
 
 */
 
+/*jslint node: true */
+'use strict';
 
-// warning about number of tables reserved
-var warning = document.getElementById("numTables");
+// get form inputs
+var nameInput = document.getElementById("name"),
+	emailInput = document.getElementById("email"),
+	guestsInput = document.getElementById("guests"),
+	subjectInput = document.getElementById("subject"),
+	messageInput = document.getElementById("message"),
+	submitButton = document.getElementById("submit"),
 
+	// get radio buttons
+	reserveRadio = document.getElementById("reservationRadio"),
+	contactRadio = document.getElementById("contactRadio"),
+
+	// get form warnings
+	warningName = document.getElementById("warningName"),
+	warningEmail = document.getElementById("warningEmail"),
+	warningGuests = document.getElementById("numTables"),
+
+	// get form fields
+	guestsField = document.getElementById("guestsField"),
+	subjectField = document.getElementById("subjectField");
+
+// calculate number of tables necessary depending on number og guests
 function calcTables() {
-	var guests = document.getElementById("guests").value;
-
-	var tables;
+	var numGuests = guestsInput.value,
+		numTables;
 
 	// calculate number of tables according to number of guests
 	// each table can comport up to 4 people
-	tables = Math.floor(guests / 4);
+	numTables = Math.floor(numGuests / 4);
 
 	// if the there is a remainder on the division of the guests on places add another table
-	(guests % 4 > 0) ? tables++ : false;
+	if (numGuests % 4 > 0) {
+		numTables += 1;
+	}
 
-	(tables != 1) ? warning.innerHTML = tables + " tables will be reserved.": warning.innerHTML = tables + " table will be reserved.";
+	if (numTables !== 1) {
+		warningGuests.innerHTML = numTables + " tables will be reserved.";
+	} else {
+		warningGuests.innerHTML = numTables + " table will be reserved.";
+	}
 
-	(tables == 0) ? warning.style.display = "none": warning.style.display = "inherit";
-
+	if (numTables === 0) {
+		warningGuests.style.display = "none";
+	} else {
+		warningGuests.style.display = "inherit";
+	}
 }
 
-// sets all form field values to defaults
-function resetForm() {
-	document.getElementById("name").value = "";
-	document.getElementById("email").value = "";
-	document.getElementById("guests").value = 0;
-	document.getElementById("message").value = "";
-	document.getElementById("guestsField").style.display = "none";
-	document.getElementById("subjectField").style.display = "none";
-	calcTables();
-	createEventListeners();
-	checkPurpose();
+// checks purpose of the form
+function checkPurpose() {
+	if (reserveRadio.checked) {
+		// if reservationRadio is selected show only the fields that deal with reservation information
+		guestsField.style.display = "block";
+		subjectField.style.display = "none";
+		subjectInput.value = "Reservation";
+	} else if (contactRadio.checked) {
+		// if contactRadio is selected show only the fields that deal with contact information
+		guestsField.style.display = "none";
+		guestsInput.value = 0;
+		warningGuests.style.display = "none";
+		subjectField.style.display = "block";
+		subjectInput.value = "";
+	}
+}
+
+// validate name input
+function validateName() {
+	var valid = true,
+		warning;
+	try {
+		if (nameInput.value === "") {
+			throw "Please enter a name.";
+		}
+	} catch (message) {
+		valid = false;
+		warning = message;
+	} finally {
+		warningName.style.display = "block";
+		warningName.innerHTML = warning;
+		if (valid) {
+			warningName.style.display = "none";
+		}
+	}
+}
+
+// validate email input
+function validateEmail() {
+	var valid = true,
+		warning,
+		re = /\S+@\S+\.\S+/;
+	try {
+		if (!re.test(emailInput.value)) {
+			throw "Please enter a valid email.";
+		}
+	} catch (message) {
+		valid = false;
+		warning = message;
+	} finally {
+		warningEmail.style.display = "block";
+		warningEmail.innerHTML = warning;
+		if (valid) {
+			warningEmail.style.display = "none";
+		}
+	}
+}
+
+// validate required input fields
+function validate() {
+	validateName();
+	validateEmail();
 }
 
 // create event listeners
 function createEventListeners() {
+
+	// check form purpose for reservationRadio
 	if (document.addEventListener) {
-		document.getElementById("guests").addEventListener("change", calcTables, false);
+		reserveRadio.addEventListener("change", checkPurpose, false);
 	} else if (document.attachEvent) {
-		document.getElementById("guests").attachEvent("onchange", calcTables);
+		reserveRadio.attachEvent("onchange", checkPurpose);
 	}
+
+	// check form purpose for contactRadio
+	if (document.addEventListener) {
+		contactRadio.addEventListener("change", checkPurpose, false);
+	} else if (document.attachEvent) {
+		contactRadio.attachEvent("onchange", checkPurpose);
+	}
+
+	// get number of guests input
+	if (document.addEventListener) {
+		guestsInput.addEventListener("change", calcTables, false);
+	} else if (document.attachEvent) {
+		guestsInput.attachEvent("onchange", calcTables);
+	}
+
+	// get submit button object click event
+	if (document.addEventListener) {
+		submitButton.addEventListener("click", validate, false);
+	} else if (document.attachEvent) {
+		submitButton.attachEvent("onclick", validate);
+	}
+}
+
+// sets all form field values to defaults
+function resetForm() {
+	nameInput.value = "";
+	emailInput.value = "";
+	guestsInput.value = 0;
+	subjectInput = "";
+	messageInput.value = "";
+	guestsField.style.display = "none";
+	subjectField.style.display = "none";
+	calcTables();
+	createEventListeners();
+	checkPurpose();
 }
 
 // resets form inputs
@@ -56,37 +173,4 @@ if (document.addEventListener) {
 	window.addEventListener("load", resetForm, false);
 } else if (document.attachEvent) {
 	window.attachEvent("onload", resetForm);
-}
-
-// checks purpose of the form
-function checkPurpose() {
-	if (reserve.checked) {
-		// if reservationRadio is selected show only the fields that deal with reservation information
-		document.getElementById("guestsField").style.display = "block";
-		document.getElementById("subjectField").style.display = "none";
-		document.getElementById("subject").value = "Reservation";
-	} else if (contact.checked) {
-		// if contactRadio is selected show only the fields that deal with contact information
-		document.getElementById("guestsField").style.display = "none";
-		document.getElementById("subjectField").style.display = "block";
-		document.getElementById("subject").value = "";
-	}
-}
-
-// get radio buttons
-var reserve = document.getElementById("reservationRadio");
-var contact = document.getElementById("contactRadio");
-
-// check form purpose for reservationRadio
-if (document.addEventListener) {
-	reserve.addEventListener("change", checkPurpose, false);
-} else if (document.attachEvent) {
-	reserve.attachEvent("onchange", checkPurpose);
-}
-
-// check form purpose for contactRadio
-if (document.addEventListener) {
-	contact.addEventListener("change", checkPurpose, false);
-} else if (document.attachEvent) {
-	contact.attachEvent("onchange", checkPurpose);
 }

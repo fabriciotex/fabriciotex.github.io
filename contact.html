@@ -58,11 +58,13 @@
 				</div>
 
 				<div class="col2">
-					<form action="#" method="post">
+					<form action="javascript: return false;" method="post">
 						<label for="name">Name<sup>*</sup></label>
-						<input type="text" name="name" id="name" placeholder="John Doe" required>
+						<input type="text" name="name" id="name" placeholder="John Doe">
+						<p id="warningName" class="warning"></p>
 						<label for="email">Email<sup>*</sup></label>
-						<input type="email" name="email" id="email" placeholder="jdoe@email.com" required>
+						<input type="email" name="email" id="email" placeholder="jdoe@email.com">
+						<p id="warningEmail" class="warning"></p>
 
 						<label>Purpose of contact<sup>*</sup></label>
 						<input type="radio" id="reservationRadio" name="purpose" value="reservation" checked> Reservation
