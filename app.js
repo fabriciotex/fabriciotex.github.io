@@ -89,6 +89,7 @@ function validateName() {
 	} finally {
 		warningName.style.display = "block";
 		warningName.innerHTML = warning;
+		nameInput.focus();
 		if (valid) {
 			warningName.style.display = "none";
 		}
@@ -110,8 +111,27 @@ function validateEmail() {
 	} finally {
 		warningEmail.style.display = "block";
 		warningEmail.innerHTML = warning;
+		emailInput.focus();
 		if (valid) {
 			warningEmail.style.display = "none";
+		}
+	}
+}
+
+function validateMessage() {
+	var valid = true,
+		warning;
+	try {
+		if (messageInput.value === "") {
+			throw "Are you sure you are sending an empty message?";
+		}
+	} catch (message) {
+		valid = false;
+		warning = message;
+	} finally {
+		valid = confirm(warning);
+		if (!valid) {
+			messageInput.focus();
 		}
 	}
 }
@@ -120,6 +140,7 @@ function validateEmail() {
 function validate() {
 	validateName();
 	validateEmail();
+	validateMessage();
 }
 
 // create event listeners
