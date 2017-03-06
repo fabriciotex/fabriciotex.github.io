@@ -129,7 +129,7 @@ function validateMessage() {
 		valid = false;
 		warning = message;
 	} finally {
-		valid = confirm(warning);
+		valid = window.confirm(warning);
 		if (!valid) {
 			messageInput.focus();
 		}
