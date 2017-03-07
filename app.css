@@ -269,6 +269,10 @@ form input[type="radio"] {
 	color: #fc3;
 }
 
+.row div a:hover {
+	color: #f1f1f1;
+}
+
 .table .row:nth-child(even) {
 	background-color: #444;
 }
