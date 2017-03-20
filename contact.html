@@ -58,7 +58,7 @@
 				</div>
 
 				<div class="col2">
-					<form action="#" method="post">
+					<form action="#" method="post" novalidate>
 						<label for="name">Name<sup>*</sup></label>
 						<input type="text" name="name" id="name" placeholder="ex. John Doe">
 						<p id="warningName" class="warning"></p>
@@ -69,23 +69,26 @@
 						<label>Purpose of contact<sup>*</sup></label>
 						<input type="radio" id="reservationRadio" name="purpose" value="reservation" checked> Reservation
 						<input type="radio" id="contactRadio" name="purpose" value="contact"> Contact
+						<p id="warningPurpose" class="warning"></p>
 
 						<div id="guestsField">
-							<label for="guests">Number of Guests <small><em>(You and your friends!)</em></small></label>
+							<label for="guests">Number of Guests<sup>*</sup> <small><em>(You and your friends!)</em></small></label>
 							<input type="number" name="guests" id="guests" min="0">
+							<p id="warningGuests" class="warning"></p>
 						</div>
 
 						<div id="subjectField">
-							<label for="subject">Subject</label>
-							<input type="text" name="subject" id="subject">
+							<label for="subject">Subject<sup>*</sup></label>
+							<input type="text" name="subject" id="subject" placeholder="ex. Contact">
+							<p id="warningSubject" class="warning"></p>
 						</div>
 
-						<p id="numTables" class="warning"></p>
 						<div class="clearfix"></div>
 						<label for="message">Message</label>
 						<textarea name="message" id="message" placeholder="ex. Hello!" rows="5"></textarea>
+						<p id="warningMessage" class="warning"></p>
 						<p>*Fields required.</p>
-						<button type="submit" name="submit" id="submit">Send message!</button>
+						<button type="submit" name="submitBtn" id="submitBtn">Send message!</button>
 						<div class="clearfix"></div>
 					</form>
 				</div>

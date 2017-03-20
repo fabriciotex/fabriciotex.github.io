@@ -230,7 +230,7 @@ form input[type="radio"] {
 	display: none;
 }
 
-#submit {
+#submitBtn {
 	float: right;
 	padding: 10px;
 	background-color: #222;
@@ -238,7 +238,7 @@ form input[type="radio"] {
 	color: #f0f0f0;
 }
 
-#submit:hover {
+#submitBtn:hover {
 	color: #222;
 	background-color: #fc3;
 	cursor: pointer;
