@@ -8,12 +8,13 @@ Filename: app.js
 */
 
 /*jslint node: true */
-'use strict';
+"use strict";
 
 // get form inputs
 var nameInput = document.getElementById("name"),
     emailInput = document.getElementById("email"),
     guestsInput = document.getElementById("guests"),
+    dateInput = document.getElementById("date"),
     subjectInput = document.getElementById("subject"),
     messageInput = document.getElementById("message"),
     form = document.getElementsByTagName("form")[0],
@@ -27,6 +28,7 @@ var nameInput = document.getElementById("name"),
     warningEmail = document.getElementById("warningEmail"),
     warningPurpose = document.getElementById("warningPurpose"),
     warningGuests = document.getElementById("warningGuests"),
+    warningDate = document.getElementById("warningDate"),
     warningSubject = document.getElementById("warningSubject"),
     warningMessage = document.getElementById("warningMessage"),
 
@@ -174,6 +176,29 @@ function validateNumberGuests() {
     }
 }
 
+// validate date if reservation radio is checked
+function validateDate() {
+    var valid = true,
+        warning;
+    try {
+        if (dateInput.value === "") {
+            throw "Please enter the date of your reservation.";
+        }
+    } catch (message) {
+        valid = false;
+        warning = message;
+        formValid = false;
+        dateInput.focus();
+    } finally {
+        warningDate.style.display = "block";
+        warningDate.innerHTML = warning;
+
+        if (valid) {
+            warningDate.style.display = "none";
+        }
+    }
+}
+
 // validate subject
 function validateSubject() {
     var valid = true,
@@ -234,6 +259,7 @@ function validate(evt) {
     validatePurpose();
     if (reserveRadio.checked) {
         validateNumberGuests();
+        validateDate();
     } else if (contactRadio.checked) {
         validateSubject();
         validateMessage();
@@ -243,6 +269,196 @@ function validate(evt) {
     if (formValid) {
         form.submit();
     }
+}
+
+// set min allowed date to enter on date input
+function setMinDate() {
+    // get today's date from date object
+    var today = new Date(),
+        // get actual day value
+        day = today.getDate(),
+        // get actual month and set it to two digit
+        // adds 1 to set it right, because the object returns the index from month starting at 0
+        month = function () {
+            if ((today.getMonth() + 1) < 10) {
+                return "0" + (today.getMonth() + 1);
+            } else {
+                return today.getMonth() + 1;
+            }
+        },
+        // get actual year
+        year = today.getFullYear(),
+
+        // set string to determine the min in the HTML date input
+        dateString = year + "-" + month() + "-" + day;
+    dateInput.setAttribute("min", dateString);
+}
+
+// calculate elapsed date since unix epoch time 
+// and from present day based on input date
+function calcDate() {
+    var inputYear = new Date(dateInput.value).getUTCFullYear(),
+        inputMonth = new Date(dateInput.value).getUTCMonth(),
+        inputDay = new Date(dateInput.value).getUTCDate(),
+        epochYear = 1970,
+        epochMonth = 0,
+        epochDay = 1,
+        currentYear = new Date().getFullYear(),
+        currentMonth = new Date().getMonth(),
+        currentDay = new Date().getDate(),
+        years,
+        months,
+        days,
+        dateString,
+        isLeap = false;
+
+    // calculations based on epoch date
+    // get elapsed years from the input date
+    years = inputYear - epochYear;
+    // get elapsed months from the input date
+    months = inputMonth - epochMonth;
+    // get elapsed days from the input date
+    days = inputDay - epochDay;
+
+    // start the string to print
+    dateString = "Your event is going to take place ";
+
+    // set the values to the string to print to the user
+    if (months === 0 && days === 0) {
+        dateString += "exactly " + years + " years";
+    } else if (months === 0) {
+        dateString += years + " years and ";
+        if (days > 1) {
+            dateString += days + " days";
+        } else {
+            dateString += days + " day";
+        }
+    } else if (days === 0) {
+        dateString += years + " years and ";
+        if (months > 1) {
+            dateString += months + " months";
+        } else {
+            dateString += months + " month";
+        }
+    } else {
+        dateString += years + " years, ";
+        if (months > 1) {
+            dateString += months + " months";
+        } else {
+            dateString += months + " month";
+        }
+        dateString += ", and ";
+        if (days > 1) {
+            dateString += days + " days";
+        } else {
+            dateString += days + " day";
+        }
+    }
+
+    dateString += " after Unix epoch time (1/1/1970) and in ";
+
+    // calculations based on current date
+    // get elapsed years from the input date
+    years = inputYear - currentYear;
+    // get elapsed months from the input date
+    months = inputMonth - currentMonth;
+    // get elapsed days from the input date
+    days = inputDay - currentDay;
+
+    // check if input year is a leap year
+    if (inputYear / 4 === 0) {
+        if (inputYear / 100 === 0) {
+            if (inputYear / 400 === 0) {
+                isLeap = true;
+            }
+        } else {
+            isLeap = true;
+        }
+    }
+
+    // check if days is negative
+    if (days < 0) {
+        if (currentMonth === 1 && isLeap) {
+            days += 29;
+        } else if (currentMonth === 1 && !isLeap) {
+            days += 28;
+        } else if (currentMonth === 3 || currentMonth === 5 || currentMonth === 8 || currentMonth === 10) {
+            days += 30;
+        } else {
+            days += 31;
+        }
+        months -= 1;
+    }
+
+    // check if months is negative
+    if (months < 0) {
+        months += 12;
+        years -= 1;
+    }
+
+    // set values to string to print to the user
+    // format string to print years
+    if (years > 1) {
+        if (months === 0 && days === 0) {
+            dateString += "exactly ";
+        }
+        dateString += years + " years";
+    } else if (years > 0) {
+        if (months === 0 && days === 0) {
+            dateString += "exactly ";
+        }
+        dateString += years + " year";
+    }
+
+    // format string to print
+    if (years > 0 && months > 0 && days > 0) {
+        dateString += ", ";
+    } else if (years > 0 && months > 0) {
+        dateString += " and ";
+    }
+
+    // format string to print months
+    if (months > 1) {
+        if (years === 0 && days === 0) {
+            dateString += "exactly ";
+        }
+        dateString += months + " months";
+    } else if (months > 0) {
+        if (years === 0 && days === 0) {
+            dateString += "exactly ";
+        }
+        dateString += months + " month";
+    }
+
+    // format string to print
+    if (months > 0 && days > 0) {
+        dateString += " and ";
+    }
+
+    // format string to print days
+    if (days > 1) {
+        if (years === 0 && months === 0) {
+            dateString += "exactly ";
+        }
+        dateString += days + " days";
+    } else if (days > 0) {
+        if (years === 0 && months === 0) {
+            dateString += "exactly ";
+        }
+        dateString += days + " day";
+    }
+
+    // if event is the same day, format stirng to print
+    if (years === 0 && months === 0 && days === 0) {
+        dateString = dateString.slice(0, dateString.length - 3);
+        dateString += "tonight!";
+    } else {
+        dateString += " from now!";
+    }
+
+    // print the string and show it to the user
+    warningDate.innerHTML = dateString;
+    warningDate.style.display = "block";
 }
 
 // create event listeners
@@ -274,6 +490,20 @@ function createEventListeners() {
         form.addEventListener("submit", validate, false);
     } else if (document.attachEvent) {
         form.attachEvent("onsubmit", validate);
+    }
+
+    // set min date on date input
+    if (document.addEventListener) {
+        dateInput.addEventListener("click", setMinDate, false);
+    } else if (document.attachEvent) {
+        dateInput.attachEvent("onclick", setMinDate);
+    }
+
+    // get date change event
+    if (document.addEventListener) {
+        dateInput.addEventListener("change", calcDate, false);
+    } else if (document.attachEvent) {
+        dateInput.attachEvent("onchange", calcDate);
     }
 }
 
