@@ -298,7 +298,6 @@ function displayCalendar(whichMonth) {
     dayOfWeek = dateObj.getDay();
     captionValue = monthArray[month] + " " + year;
     document.getElementById("caption").innerHTML = captionValue;
-    //    document.querySelector("#cal table #caption").innerHTML = captionValue;
 
     if (month === 0 || month === 2 || month === 4 || month === 6 || month === 7 || month === 9 || month === 11) { // Jan, Mar, Jul, Aug, Oct, Dec
         daysInMonth = 31;
