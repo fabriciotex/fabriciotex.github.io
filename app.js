@@ -37,7 +37,10 @@ var nameInput = document.getElementById("name"),
     subjectField = document.getElementById("subjectField"),
 
     // boolean value for form validity
-    formValid = true;
+    formValid = true,
+
+    // create date object for dealing with calendar
+    dateObj = new Date();
 
 // calculate number of tables necessary depending on number og guests
 function calcTables() {
@@ -271,27 +274,82 @@ function validate(evt) {
     }
 }
 
-// set min allowed date to enter on date input
-function setMinDate() {
-    // get today's date from date object
-    var today = new Date(),
-        // get actual day value
-        day = today.getDate(),
-        // get actual month and set it to two digit
-        // adds 1 to set it right, because the object returns the index from month starting at 0
-        month = function () {
-            if ((today.getMonth() + 1) < 10) {
-                return "0" + (today.getMonth() + 1);
-            } else {
-                return today.getMonth() + 1;
-            }
-        },
-        // get actual year
-        year = today.getFullYear(),
+function displayCalendar(whichMonth) {
+    var date,
+        dateToday = new Date(),
+        dayOfWeek,
+        daysInMonth,
+        dateCells,
+        captionValue,
+        month,
+        year,
+        monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        i;
 
-        // set string to determine the min in the HTML date input
-        dateString = year + "-" + month() + "-" + day;
-    dateInput.setAttribute("min", dateString);
+    if (whichMonth === -1) {
+        dateObj.setMonth(dateObj.getMonth() - 1);
+    } else if (whichMonth === 1) {
+        dateObj.setMonth(dateObj.getMonth() + 1);
+    }
+
+    month = dateObj.getMonth();
+    year = dateObj.getFullYear();
+    dateObj.setDate(1);
+    dayOfWeek = dateObj.getDay();
+    captionValue = monthArray[month] + " " + year;
+    document.getElementById("caption").innerHTML = captionValue;
+    //    document.querySelector("#cal table #caption").innerHTML = captionValue;
+
+    if (month === 0 || month === 2 || month === 4 || month === 6 || month === 7 || month === 9 || month === 11) { // Jan, Mar, Jul, Aug, Oct, Dec
+        daysInMonth = 31;
+    } else if (month === 1) { //Feb
+        if (year % 4 === 0) { // leap year test
+            if (year % 100 === 0) {
+                // year ending in 00 not a leap year unless
+                // divisible by 400
+                if (year % 400 === 0) {
+                    daysInMonth = 29;
+                } else {
+                    daysInMonth = 28;
+                }
+            } else {
+                daysInMonth = 29;
+            }
+        } else {
+            daysInMonth = 28;
+        }
+    } else { // Apr, Jun, Sep, Nov
+        daysInMonth = 30;
+    }
+
+    dateCells = document.getElementsByTagName("td");
+    for (i = 0; i < dateCells.length; i += 1) {
+        // clear existing table dates
+        dateCells[i].innerHTML = "";
+        dateCells[i].className = "";
+    }
+
+    for (i = dayOfWeek; i < daysInMonth + dayOfWeek; i += 1) {
+        // add dates to days cells
+        dateCells[i].innerHTML = dateObj.getDate();
+        dateCells[i].className = "date";
+
+        if (dateToday < dateObj) {
+            dateCells[i].className = "futuredate";
+        }
+
+        date = dateObj.getDate() + 1;
+        dateObj.setDate(date);
+    }
+
+    dateObj.setMonth(dateObj.getMonth() - 1);
+    // reset month to month shown
+    document.getElementById("cal").style.display = "block";
+    // display calendar if it's not already visible
+}
+
+function hideCalendar() {
+    document.getElementById("cal").style.display = "none";
 }
 
 // calculate elapsed date since unix epoch time 
@@ -366,9 +424,9 @@ function calcDate() {
     days = inputDay - currentDay;
 
     // check if input year is a leap year
-    if (inputYear / 4 === 0) {
-        if (inputYear / 100 === 0) {
-            if (inputYear / 400 === 0) {
+    if (inputYear % 4 === 0) {
+        if (inputYear % 100 === 0) {
+            if (inputYear % 400 === 0) {
                 isLeap = true;
             }
         } else {
@@ -461,6 +519,49 @@ function calcDate() {
     warningDate.style.display = "block";
 }
 
+function selectDate(event) {
+    var callerElement,
+        fullDateToday,
+        dateToday,
+        selectedDate;
+
+    if (event === undefined) { // get caller element in IE8
+        event = window.event;
+    }
+
+    callerElement = event.target || event.srcElement;
+
+    if (callerElement.innerHTML === "") {
+        // cell contains no date, so don't close the calendar
+        document.getElementById("cal").style.display = "block";
+        return false;
+    }
+
+    dateObj.setDate(callerElement.innerHTML);
+
+    fullDateToday = new Date();
+    dateToday = Date.UTC(fullDateToday.getFullYear(), fullDateToday.getMonth(), fullDateToday.getDate());
+    selectedDate = Date.UTC(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+
+    if (selectedDate <= dateToday) {
+        document.getElementById("cal").style.display = "block";
+        return false;
+    }
+
+    dateInput.value = dateObj.toLocaleDateString();
+
+    hideCalendar();
+    calcDate();
+}
+
+function prevMo() {
+    displayCalendar(-1);
+}
+
+function nextMo() {
+    displayCalendar(1);
+}
+
 // create event listeners
 function createEventListeners() {
 
@@ -492,12 +593,50 @@ function createEventListeners() {
         form.attachEvent("onsubmit", validate);
     }
 
-    // set min date on date input
+    // display calendar
     if (document.addEventListener) {
-        dateInput.addEventListener("click", setMinDate, false);
+        dateInput.addEventListener("click", displayCalendar, false);
     } else if (document.attachEvent) {
-        dateInput.attachEvent("onclick", setMinDate);
+        dateInput.attachEvent("onclick", displayCalendar);
     }
+
+    // calendar elements
+    var dateCells = document.getElementsByTagName("td"),
+        i,
+        closeBtn = document.getElementById("close"),
+        prevLink = document.getElementById("prev"),
+        nextLink = document.getElementById("next");
+
+    if (document.addEventListener) {
+        for (i = 0; i < dateCells.length; i += 1) {
+            dateCells[i].addEventListener("click", selectDate, false);
+        }
+    } else if (document.attachEvent) {
+        for (i = 0; i < dateCells.length; i += 1) {
+            dateCells[i].attachEvent("onclick", selectDate);
+        }
+    }
+
+    if (document.addEventListener) {
+        closeBtn.addEventListener("click", hideCalendar, false);
+    } else if (document.attachEvent) {
+        closeBtn.attachEvent("onclick", hideCalendar);
+    }
+
+    if (document.addEventListener) {
+        prevLink.addEventListener("click", prevMo, false);
+        nextLink.addEventListener("click", nextMo, false);
+    } else if (document.attachEvent) {
+        prevLink.attachEvent("onclick", prevMo);
+        nextLink.attachEvent("onclick", nextMo);
+    }
+
+    // set min date on date input
+    //    if (document.addEventListener) {
+    //        dateInput.addEventListener("click", setMinDate, false);
+    //    } else if (document.attachEvent) {
+    //        dateInput.attachEvent("onclick", setMinDate);
+    //    }
 
     // get date change event
     if (document.addEventListener) {
