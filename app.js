@@ -15,6 +15,7 @@ var nameInput = document.getElementById("name"),
     emailInput = document.getElementById("email"),
     guestsInput = document.getElementById("guests"),
     dateInput = document.getElementById("date"),
+    featuresInput = document.getElementsByName("features"),
     subjectInput = document.getElementById("subject"),
     messageInput = document.getElementById("message"),
     form = document.getElementsByTagName("form")[0],
@@ -40,7 +41,12 @@ var nameInput = document.getElementById("name"),
     formValid = true,
 
     // create date object for dealing with calendar
-    dateObj = new Date();
+    dateObj = new Date(),
+
+    // create features array and form object and form JSON string
+    features = [],
+    formObj = {},
+    formStr;
 
 // calculate number of tables necessary depending on number og guests
 function calcTables() {
@@ -115,7 +121,7 @@ function validateName() {
 function validateEmail() {
     var valid = true,
         warning,
-        re = /\S+@\S+\.\S+/;
+        re = /^[_\w\-]+(\.[_\w\-]+)*@[\w\-]+(\.[\w\-]+)*(\.[\D]{2,6})$/;
     try {
         if (!re.test(emailInput.value)) {
             throw "Please enter a valid email.";
@@ -207,7 +213,7 @@ function validateSubject() {
     var valid = true,
         warning;
     try {
-        if (subjectInput.length === 0) {
+        if (subjectInput.value === "") {
             throw "Please enter a subject for your message.";
         }
     } catch (message) {
@@ -268,8 +274,23 @@ function validate(evt) {
         validateMessage();
     }
 
-
     if (formValid) {
+        // add information to the form object
+        formObj.name = nameInput.value;
+        formObj.email = emailInput.value;
+        if (reserveRadio.checked) {
+            formObj.purpose = "Reservation";
+            formObj.guests = guestsInput.value;
+            formObj.date = dateInput.value;
+            formObj.features = features.join();
+        } else {
+            formObj.purpose = "Contact";
+            formObj.subject = subjectInput.value;
+        }
+        formObj.message = messageInput.value;
+
+        // stringify the form object
+        formStr = JSON.stringify(formObj);
         form.submit();
     }
 }
@@ -351,7 +372,7 @@ function hideCalendar() {
     document.getElementById("cal").style.display = "none";
 }
 
-// calculate elapsed date since unix epoch time 
+// calculate elapsed date since unix epoch time
 // and from present day based on input date
 function calcDate() {
     var inputYear = new Date(dateInput.value).getUTCFullYear(),
@@ -561,6 +582,27 @@ function nextMo() {
     displayCalendar(1);
 }
 
+// save the features into an array
+function saveFeatures(evt) {
+    if (evt === undefined) { // get caller element in IE8
+        evt = window.event;
+    }
+    var caller = evt.target || evt.srcElement,
+        feature = caller.value,
+        i;
+
+    if (caller.checked) { // if checkbox checked
+        // add features to the feature array;
+        features.push(feature);
+    } else { // if unchecked
+        for (i = 0; i < features.length; i += 1) {
+            if (features[i] === feature) {
+                features.splice(i, 1);
+            }
+        }
+    }
+}
+
 // create event listeners
 function createEventListeners() {
 
@@ -606,6 +648,7 @@ function createEventListeners() {
         prevLink = document.getElementById("prev"),
         nextLink = document.getElementById("next");
 
+    // select date on calendar
     if (document.addEventListener) {
         for (i = 0; i < dateCells.length; i += 1) {
             dateCells[i].addEventListener("click", selectDate, false);
@@ -616,12 +659,14 @@ function createEventListeners() {
         }
     }
 
+    // hide calendar
     if (document.addEventListener) {
         closeBtn.addEventListener("click", hideCalendar, false);
     } else if (document.attachEvent) {
         closeBtn.attachEvent("onclick", hideCalendar);
     }
 
+    // change month on calendar
     if (document.addEventListener) {
         prevLink.addEventListener("click", prevMo, false);
         nextLink.addEventListener("click", nextMo, false);
@@ -630,18 +675,22 @@ function createEventListeners() {
         nextLink.attachEvent("onclick", nextMo);
     }
 
-    // set min date on date input
-    //    if (document.addEventListener) {
-    //        dateInput.addEventListener("click", setMinDate, false);
-    //    } else if (document.attachEvent) {
-    //        dateInput.attachEvent("onclick", setMinDate);
-    //    }
-
     // get date change event
     if (document.addEventListener) {
         dateInput.addEventListener("change", calcDate, false);
     } else if (document.attachEvent) {
         dateInput.attachEvent("onchange", calcDate);
+    }
+
+    // get checkbox change event
+    if (document.addEventListener) {
+        for (i = 0; i < featuresInput.length; i += 1) {
+            featuresInput[i].addEventListener("change", saveFeatures, false);
+        }
+    } else if (document.attachEvent) {
+        for (i = 0; i < featuresInput.length; i += 1) {
+            featuresInput[i].attachEvent("onchange", saveFeatures);
+        }
     }
 }
 
@@ -650,7 +699,7 @@ function resetForm() {
     nameInput.value = "";
     emailInput.value = "";
     guestsInput.value = 0;
-    subjectInput = "";
+    subjectInput.value = "";
     messageInput.value = "";
     guestsField.style.display = "none";
     subjectField.style.display = "none";

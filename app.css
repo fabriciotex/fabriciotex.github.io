@@ -192,12 +192,13 @@ form {
     padding: 10px;
 }
 
-form label {
+label {
     color: #fc3;
     font-family: Georgia, "Times New Roman", serif;
+    display: block;
 }
 
-form input,
+input,
 textarea {
     display: block;
     padding: 5px;
@@ -206,7 +207,7 @@ textarea {
     margin-bottom: 10px;
 }
 
-form textarea {
+textarea {
     resize: none;
 }
 
@@ -216,7 +217,7 @@ form p {
     font-size: 0.7em;
 }
 
-form input[type="radio"] {
+input[type="radio"], input[type="checkbox"] {
     width: auto;
     display: inline-block;
     margin-left: 10px;
