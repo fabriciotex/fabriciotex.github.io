@@ -1,7 +1,7 @@
 /* The Pub Website
 
 Author: Fabricio Teixeira
-Date:		02/24/2017
+Date:		04/08/2017
 
 Filename: app.js
 
@@ -97,10 +97,14 @@ function checkPurpose() {
 // validate name input
 function validateName() {
     var valid = true,
-        warning;
+        warning,
+        re = /\W+/;
     try {
         if (nameInput.value === "") {
             throw "Please enter a name.";
+        }
+        if (re.test(nameInput.value)) {
+            throw "Invalid name. Try again."
         }
     } catch (message) {
         valid = false;
@@ -170,6 +174,10 @@ function validateNumberGuests() {
         if (guestsInput.value === "" || !isNaN(guestsInput) || guestsInput.value < 0) {
             throw "Please enter the desired number of guests.";
         }
+
+        if (guestsInput.value > 20) {
+            throw "Please send a message about special reservation.";
+        }
     } catch (message) {
         valid = false;
         warning = message;
@@ -188,10 +196,21 @@ function validateNumberGuests() {
 // validate date if reservation radio is checked
 function validateDate() {
     var valid = true,
-        warning;
+        warning,
+        re = /(0?[1-9]|1[012])[- \/.](0?[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d/;
     try {
         if (dateInput.value === "") {
             throw "Please enter the date of your reservation.";
+        }
+
+        if (!re.test(dateInput.value)) {
+            throw "Invalid date format. Try again.";
+        }
+
+        var fDate = new Date(dateInput.value),
+            cDate = new Date();
+        if (fDate < cDate) {
+            throw "Date should be on the future.";
         }
     } catch (message) {
         valid = false;
@@ -211,10 +230,15 @@ function validateDate() {
 // validate subject
 function validateSubject() {
     var valid = true,
-        warning;
+        warning,
+        re = /\W/;
     try {
         if (subjectInput.value === "") {
             throw "Please enter a subject for your message.";
+        }
+
+        if (re.test(subjectInput.value)) {
+            throw "Invalid subject.";
         }
     } catch (message) {
         valid = false;
@@ -234,10 +258,15 @@ function validateSubject() {
 // validate message input
 function validateMessage() {
     var valid = true,
-        warning;
+        warning,
+        re = /[\w\-\.\,\!\?\n]+/
     try {
         if (messageInput.value === "" || messageInput.value === messageInput.placeholder) {
             throw "Please enter a message.";
+        }
+
+        if (!re.test(messageInput.value)) {
+            throw "Invalid message.";
         }
     } catch (message) {
         valid = false;
