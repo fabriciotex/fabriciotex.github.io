@@ -103,7 +103,7 @@ function validateName() {
         if (nameInput.value === "") {
             throw "Please enter a name.";
         }
-        if (re.test(nameInput.value)) {
+        if (!re.test(nameInput.value)) {
             throw "Invalid name. Try again."
         }
     } catch (message) {
