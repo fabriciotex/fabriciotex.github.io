@@ -18,8 +18,7 @@ Filename: app.css
 
 /* Structure */
 
-html,
-body {
+html, body {
     height: 100%;
     line-height: 1.5;
     font-family: Helvetica, Arial, sans-serif;
@@ -37,12 +36,7 @@ a {
     color: inherit;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: Georgia, "Times New Roman", serif;
     color: #fc3;
 }
@@ -74,9 +68,7 @@ main {
     width: 33.333%;
 }
 
-.col,
-.col2,
-.col3 {
+.col, .col2, .col3 {
     float: left;
     padding: 10px;
     box-sizing: border-box;
@@ -103,8 +95,7 @@ header nav a {
     padding: .5em 2em;
 }
 
-header nav a:hover,
-header nav a.active {
+header nav a:hover, header nav .active {
     background: #fc3;
     color: #222;
 }
@@ -198,8 +189,7 @@ label {
     display: block;
 }
 
-input,
-textarea {
+input, textarea {
     display: block;
     padding: 5px;
     width: 98%;
@@ -275,8 +265,7 @@ input[type="radio"], input[type="checkbox"] {
     text-align: right;
 }
 
-#cal table th,
-#cal table td {
+#cal table th, #cal table td {
     width: 2em;
     padding: 4px;
 }
@@ -301,10 +290,7 @@ input[type="radio"], input[type="checkbox"] {
     color: white;
 }
 
-#cal table td.futuredate:hover,
-#prev:hover,
-#next:hover,
-#close:hover {
+#cal table td.futuredate:hover, #prev:hover, #next:hover, #close:hover {
     background: #fc3;
     color: #333;
 }
@@ -340,7 +326,6 @@ input[type="radio"], input[type="checkbox"] {
 
 .table div.row div {
     display: block;
-    height: 100%;
     line-height: 100%;
 }
 
@@ -354,6 +339,10 @@ input[type="radio"], input[type="checkbox"] {
 
 .table .row:nth-child(even) {
     background-color: #444;
+}
+
+#map {
+    height: 20em;
 }
 
 
@@ -407,14 +396,12 @@ footer p a {
 
 /* Responsive to under 768px width devices */
 
-@media only screen and ( max-width: 768px) {
+@media only screen and (max-width: 768px) {
     /* Navs */
     nav {
         text-align: center;
     }
-    nav ul,
-    footer h2 a,
-    footer nav {
+    nav ul, footer h2 a, footer nav {
         float: none;
     }
     nav li {
@@ -424,13 +411,11 @@ footer p a {
     nav a {
         display: block;
     }
-    .cover h1 {
+    h1 {
         font-size: 40px;
     }
     /* Change the columns width and margin to show in one column layout */
-    .col,
-    .col2,
-    .col3 {
+    .col, .col2, .col3 {
         width: 100%;
         margin: 20px auto 30px;
     }
