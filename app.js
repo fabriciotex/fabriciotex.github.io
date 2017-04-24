@@ -1,7 +1,7 @@
 /* The Pub Website
 
 Author: Fabricio Teixeira
-Date:		04/08/2017
+Date:		04/24/2017
 
 Filename: app.js
 
@@ -121,14 +121,33 @@ function validateName() {
     }
 }
 
+// call API to validate email
+function emailAPI() {
+    var email = emailInput.value,
+        url = "http://apilayer.net/api/check?access_key=35140794d1f33c09d1707aa8f4e16a8b&email=" + email + "&smtp=1&callback=validateEmail",
+        script = document.createElement("script");
+
+    // create script element to access API
+    script.id = "jsonp";
+    script.src = url;
+    document.body.appendChild(script);
+}
+
 // validate email input
-function validateEmail() {
+function validateEmail(obj) {
+    // new validation based on API
     var valid = true,
-        warning,
-        re = /^[_\w\-]+(\.[_\w\-]+)*@[\w\-]+(\.[\w\-]+)*(\.[\D]{2,6})$/;
+        warning;
+
     try {
-        if (!re.test(emailInput.value)) {
+        // check if email has a valid format
+        if (!obj.format_valid || !obj.mx_found) {
             throw "Please enter a valid email.";
+        }
+
+        // check if email is not disposable
+        if (obj.disposable) {
+            throw "We need your real email to contact you.";
         }
     } catch (message) {
         valid = false;
@@ -138,10 +157,39 @@ function validateEmail() {
     } finally {
         warningEmail.style.display = "block";
         warningEmail.innerHTML = warning;
-        if (valid) {
+        if (valid && obj.did_you_mean !== "") {
+            // warningEmail.style.display = "none";
+            warningEmail.style.backgroundColor = "#2ecc71";
+            warningEmail.style.color = "#f1f1f1";
+            warningEmail.innerHTML = "Did you mean: " + obj.did_you_mean + "?";
+        } else if (valid) {
             warningEmail.style.display = "none";
         }
+        var script = document.getElementById("jsonp");
+        script.parentNode.removeChild(script);
     }
+
+    // old validation based on regex
+    // var valid = true,
+    //     warning,
+    //     re = /^[_\w\-]+(\.[_\w\-]+)*@[\w\-]+(\.[\w\-]+)*(\.[\D]{2,6})$/;
+
+    // try {
+    //     if (!re.test(emailInput.value)) {
+    //         throw "Please enter a valid email.";
+    //     }
+    // } catch (message) {
+    //     valid = false;
+    //     warning = message;
+    //     formValid = false;
+    //     emailInput.focus();
+    // } finally {
+    //     warningEmail.style.display = "block";
+    //     warningEmail.innerHTML = warning;
+    //     if (valid) {
+    //         warningEmail.style.display = "none";
+    //     }
+    // }
 }
 
 // validate purpose radio buttons
@@ -293,7 +341,7 @@ function validate(evt) {
     formValid = true;
 
     validateName();
-    validateEmail();
+    emailAPI();
     validatePurpose();
     if (reserveRadio.checked) {
         validateNumberGuests();
