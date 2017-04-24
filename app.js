@@ -124,7 +124,7 @@ function validateName() {
 // call API to validate email
 function emailAPI() {
     var email = emailInput.value,
-        url = "http://apilayer.net/api/check?access_key=35140794d1f33c09d1707aa8f4e16a8b&email=" + email + "&smtp=1&callback=validateEmail",
+        url = "https://apilayer.net/api/check?access_key=35140794d1f33c09d1707aa8f4e16a8b&email=" + email + "&smtp=1&callback=validateEmail",
         script = document.createElement("script");
 
     // create script element to access API
