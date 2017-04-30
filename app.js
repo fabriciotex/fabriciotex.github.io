@@ -11,31 +11,31 @@ Filename: app.js
 "use strict";
 
 // get form inputs
-var nameInput = document.getElementById("name"),
-    emailInput = document.getElementById("email"),
-    guestsInput = document.getElementById("guests"),
-    dateInput = document.getElementById("date"),
-    featuresInput = document.getElementsByName("features"),
-    subjectInput = document.getElementById("subject"),
-    messageInput = document.getElementById("message"),
-    form = document.getElementsByTagName("form")[0],
+var nameInput = $("#name"), //document.getElementById("name"),
+    emailInput = $("#email"), //document.getElementById("email"),
+    guestsInput = $("#guests"), //document.getElementById("guests"),
+    dateInput = $("#date"), //document.getElementById("date"),
+    featuresInput = $('[name="fetures"]'), //document.getElementsByName("features"),
+    subjectInput = $("#subject"), //document.getElementById("subject"),
+    messageInput = $("#message"), //document.getElementById("message"),
+    form = $("form"), //document.getElementsByTagName("form")[0],
 
     // get radio buttons
-    reserveRadio = document.getElementById("reservationRadio"),
-    contactRadio = document.getElementById("contactRadio"),
+    reserveRadio = $("#reservationRadio"), //document.getElementById("reservationRadio"),
+    contactRadio = $("#contactRadio"), //document.getElementById("contactRadio"),
 
     // get form warnings
-    warningName = document.getElementById("warningName"),
-    warningEmail = document.getElementById("warningEmail"),
-    warningPurpose = document.getElementById("warningPurpose"),
-    warningGuests = document.getElementById("warningGuests"),
-    warningDate = document.getElementById("warningDate"),
-    warningSubject = document.getElementById("warningSubject"),
-    warningMessage = document.getElementById("warningMessage"),
+    warningName = $("#warningName"), //document.getElementById("warningName"),
+    warningEmail = $("#warningEmail"), //document.getElementById("warningEmail"),
+    warningPurpose = $("#warningPurpose"), //document.getElementById("warningPurpose"),
+    warningGuests = $("#warningGuests"), //document.getElementById("warningGuests"),
+    warningDate = $("#warningDate"), //document.getElementById("warningDate"),
+    warningSubject = $("#warningSubject"), //document.getElementById("warningSubject"),
+    warningMessage = $("#warningMessage"), //document.getElementById("warningMessage"),
 
     // get form fields
-    guestsField = document.getElementById("guestsField"),
-    subjectField = document.getElementById("subjectField"),
+    guestsField = $("#guestsField"), //document.getElementById("guestsField"),
+    subjectField = $("#subjectField"), //document.getElementById("subjectField"),
 
     // boolean value for form validity
     formValid = true,
@@ -50,7 +50,7 @@ var nameInput = document.getElementById("name"),
 
 // calculate number of tables necessary depending on number og guests
 function calcTables() {
-    var numGuests = guestsInput.value,
+    var numGuests = guestsInput.val(), //guestsInput.value,
         numTables;
 
     // calculate number of tables according to number of guests
@@ -64,32 +64,46 @@ function calcTables() {
 
     if (numTables > 0) {
         if (numTables !== 1) {
-            warningGuests.innerHTML = numTables + " tables will be reserved.";
+            warningGuests.html(numTables + " tables will be reserved.");
+            // warningGuests.innerHTML = numTables + " tables will be reserved.";
         } else {
-            warningGuests.innerHTML = numTables + " table will be reserved.";
+            warningGuests.html(numTables + " table will be reserved.");
+            // warningGuests.innerHTML = numTables + " table will be reserved.";
         }
-        warningGuests.style.display = "inherit";
+        warningGuests.show();
+        // warningGuests.style.display = "inherit";
     } else {
-        warningGuests.style.display = "none";
+        warningGuests.hide();
+        // warningGuests.style.display = "none";
     }
 }
 
 // checks purpose of the form
 function checkPurpose() {
     // get the message label to change if necessary
-    var messageLabel = document.getElementsByTagName("label")[document.getElementsByTagName("label").length - 1];
+    var messageLabel = $("label").eq($("label").length - 1); //document.getElementsByTagName("label")[document.getElementsByTagName("label").length - 1];
 
-    if (reserveRadio.checked) {
+    if (reserveRadio.is(":checked")) {
+        // if (reserveRadio.checked) {
         // if reservationRadio is selected show only the fields that deal with reservation information
-        guestsField.style.display = "block";
-        subjectField.style.display = "none";
-        messageLabel.innerHTML = "Message";
-    } else if (contactRadio.checked) {
+        guestsField.show();
+        subjectField.hide();
+        messageLabel.html("Message");
+        // guestsField.style.display = "block";
+        // subjectField.style.display = "none";
+        // messageLabel.innerHTML = "Message";
+    } else if (contactRadio.is(":checked")) {
+        // } else if (contactRadio.checked) {
         // if contactRadio is selected show only the fields that deal with contact information
-        guestsField.style.display = "none";
-        guestsInput.value = 0;
-        warningGuests.style.display = "none";
-        subjectField.style.display = "block";
+        guestsField.hide();
+        // guestsField.style.display = "none";
+        guestsInput.val(0);
+        // guestsInput.value = 0;
+        warningGuests.hide();
+        subjectField.show();
+        messageLabel.html("Message<sup>*</sup>");
+        // warningGuests.style.display = "none";
+        // subjectField.style.display = "block";
         messageLabel.innerHTML = "Message<sup>*</sup>";
     }
 }
@@ -100,10 +114,12 @@ function validateName() {
         warning,
         re = /\W+/;
     try {
-        if (nameInput.value === "") {
+        if (nameInput.val() === "") {
+            // if (nameInput.value === "") {
             throw "Please enter a name.";
         }
-        if (!re.test(nameInput.value)) {
+        if (!re.test(nameInput.val())) {
+            // if (!re.test(nameInput.value)) {
             throw "Invalid name. Try again."
         }
     } catch (message) {
@@ -112,18 +128,21 @@ function validateName() {
         formValid = false;
         nameInput.focus();
     } finally {
-        warningName.style.display = "block";
-        warningName.innerHTML = warning;
+        warningName.show();
+        warningName.html(warning);
+        // warningName.style.display = "block";
+        // warningName.innerHTML = warning;
 
         if (valid) {
-            warningName.style.display = "none";
+            warningName.hide();
+            // warningName.style.display = "none";
         }
     }
 }
 
 // call API to validate email
 function emailAPI() {
-    var email = emailInput.value,
+    var email = emailInput.val(), // emailInput.value,
         url = "https://apilayer.net/api/check?access_key=35140794d1f33c09d1707aa8f4e16a8b&email=" + email + "&smtp=1&callback=validateEmail",
         script = document.createElement("script");
 
@@ -155,18 +174,24 @@ function validateEmail(obj) {
         formValid = false;
         emailInput.focus();
     } finally {
-        warningEmail.style.display = "block";
-        warningEmail.innerHTML = warning;
+        warningEmail.show();
+        warningEmail.html(warning);
+        // warningEmail.style.display = "block";
+        // warningEmail.innerHTML = warning;
         if (valid && obj.did_you_mean !== "") {
-            // warningEmail.style.display = "none";
-            warningEmail.style.backgroundColor = "#2ecc71";
-            warningEmail.style.color = "#f1f1f1";
-            warningEmail.innerHTML = "Did you mean: " + obj.did_you_mean + "?";
+            warningEmail.css("background-color", "#2ecc71");
+            warningEmail.css("color", "#f1f1f1");
+            warningEmail.html("Did you mean: " + obj.did_you_mean + "?");
+            // warningEmail.style.backgroundColor = "#2ecc71";
+            // warningEmail.style.color = "#f1f1f1";
+            // warningEmail.innerHTML = "Did you mean: " + obj.did_you_mean + "?";
         } else if (valid) {
+            warningEmail.hide();
             warningEmail.style.display = "none";
         }
-        var script = document.getElementById("jsonp");
-        script.parentNode.removeChild(script);
+        $("#jsonp").remove();
+        // var script = document.getElementById("jsonp");
+        // script.parentNode.removeChild(script);
     }
 
     // old validation based on regex
@@ -197,7 +222,8 @@ function validatePurpose() {
     var valid = true,
         warning;
     try {
-        if (!reserveRadio.checked && !contactRadio.checked) {
+        if (!reserveRadio.is(":checked") && !contactRadio.is(":checked")) {
+            // if (!reserveRadio.checked && !contactRadio.checked) {
             throw "Please select an option.";
         }
     } catch (message) {
@@ -206,10 +232,13 @@ function validatePurpose() {
         formValid = false;
         reserveRadio.focus();
     } finally {
-        warningPurpose.style.display = "block";
-        warningPurpose.innerHTML = warning;
+        warningPurpose.show();
+        warningPurpose.html(warning);
+        // warningPurpose.style.display = "block";
+        // warningPurpose.innerHTML = warning;
         if (valid) {
-            warningPurpose.style.display = "none";
+            warningPurpose.hide();
+            // warningPurpose.style.display = "none";
         }
     }
 }
@@ -219,11 +248,13 @@ function validateNumberGuests() {
     var valid = true,
         warning;
     try {
-        if (guestsInput.value === "" || !isNaN(guestsInput) || guestsInput.value < 0) {
+        if (guestsInput.val() === "" || !isNaN(guestsInput) || guestsInput.val() < 0) {
+            // if (guestsInput.value === "" || !isNaN(guestsInput) || guestsInput.value < 0) {
             throw "Please enter the desired number of guests.";
         }
 
-        if (guestsInput.value > 20) {
+        if (guestsInput.val() > 20) {
+            // if (guestsInput.value > 20) {
             throw "Please send a message about special reservation.";
         }
     } catch (message) {
@@ -232,11 +263,14 @@ function validateNumberGuests() {
         formValid = false;
         nameInput.focus();
     } finally {
-        warningGuests.style.display = "block";
-        warningGuests.innerHTML = warning;
+        warningGuests.show();
+        warningGuests.html(warning);
+        // warningGuests.style.display = "block";
+        // warningGuests.innerHTML = warning;
 
         if (valid) {
-            warningGuests.style.display = "none";
+            warningGuests.hide();
+            // warningGuests.style.display = "none";
         }
     }
 }
@@ -247,15 +281,17 @@ function validateDate() {
         warning,
         re = /(0?[1-9]|1[012])[- \/.](0?[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d/;
     try {
-        if (dateInput.value === "") {
+        if (dateInput.val() === "") {
+            // if (dateInput.value === "") {
             throw "Please enter the date of your reservation.";
         }
 
-        if (!re.test(dateInput.value)) {
+        if (!re.test(dateInput.val())) {
+            // if (!re.test(dateInput.value)) {
             throw "Invalid date format. Try again.";
         }
 
-        var fDate = new Date(dateInput.value),
+        var fDate = new Date(dateInput.val()), //new Date(dateInput.value),
             cDate = new Date();
         if (fDate < cDate) {
             throw "Date should be on the future.";
@@ -266,11 +302,14 @@ function validateDate() {
         formValid = false;
         dateInput.focus();
     } finally {
-        warningDate.style.display = "block";
-        warningDate.innerHTML = warning;
+        warningDate.show();
+        warningDate.html(warning);
+        // warningDate.style.display = "block";
+        // warningDate.innerHTML = warning;
 
         if (valid) {
-            warningDate.style.display = "none";
+            warningDate.hide();
+            // warningDate.style.display = "none";
         }
     }
 }
@@ -281,11 +320,13 @@ function validateSubject() {
         warning,
         re = /\W/;
     try {
-        if (subjectInput.value === "") {
+        if (subjectInput.val() === "") {
+            // if (subjectInput.value === "") {
             throw "Please enter a subject for your message.";
         }
 
-        if (re.test(subjectInput.value)) {
+        if (re.test(subjectInput.val())) {
+            // if (re.test(subjectInput.value)) {
             throw "Invalid subject.";
         }
     } catch (message) {
@@ -294,11 +335,14 @@ function validateSubject() {
         formValid = false;
         nameInput.focus();
     } finally {
-        warningSubject.style.display = "block";
-        warningSubject.innerHTML = warning;
+        warningSubject.show();
+        warningSubject.html(warning);
+        // warningSubject.style.display = "block";
+        // warningSubject.innerHTML = warning;
 
         if (valid) {
-            warningSubject.style.display = "none";
+            warningSubject.hide();
+            // warningSubject.style.display = "none";
         }
     }
 }
@@ -309,11 +353,13 @@ function validateMessage() {
         warning,
         re = /[\w\-\.\,\!\?\n]+/
     try {
-        if (messageInput.value === "" || messageInput.value === messageInput.placeholder) {
+        if (messageInput.val() === "" || messageInput.val() === messageInput.placeholder) {
+            // if (messageInput.value === "" || messageInput.value === messageInput.placeholder) {
             throw "Please enter a message.";
         }
 
-        if (!re.test(messageInput.value)) {
+        if (!re.test(messageInput.val())) {
+            // if (!re.test(messageInput.value)) {
             throw "Invalid message.";
         }
     } catch (message) {
@@ -322,11 +368,14 @@ function validateMessage() {
         formValid = false;
         messageInput.focus();
     } finally {
-        warningMessage.style.display = "block";
-        warningMessage.innerHTML = warning;
+        warningMessage.show();
+        warningMessage.html(warning);
+        // warningMessage.style.display = "block";
+        // warningMessage.innerHTML = warning;
 
         if (valid) {
-            warningMessage.style.display = "none";
+            warningMessage.hide();
+            // warningMessage.style.display = "none";
         }
     }
 }
@@ -343,28 +392,37 @@ function validate(evt) {
     validateName();
     emailAPI();
     validatePurpose();
-    if (reserveRadio.checked) {
+    if (reserveRadio.is(":checked")) {
+        // if (reserveRadio.checked) {
         validateNumberGuests();
         validateDate();
-    } else if (contactRadio.checked) {
+    } else if (contactRadio.is(":checked")) {
+        // } else if (contactRadio.checked) {
         validateSubject();
         validateMessage();
     }
 
     if (formValid) {
         // add information to the form object
-        formObj.name = nameInput.value;
-        formObj.email = emailInput.value;
-        if (reserveRadio.checked) {
+        formObj.name = nameInput.val();
+        formObj.email = emailInput.val();
+        // formObj.name = nameInput.value;
+        // formObj.email = emailInput.value;
+        if (reserveRadio.is(":checked")) {
+            // if (reserveRadio.checked) {
             formObj.purpose = "Reservation";
-            formObj.guests = guestsInput.value;
-            formObj.date = dateInput.value;
+            formObj.guests = guestsInput.val();
+            formObj.date = dateInput.val();
+            // formObj.guests = guestsInput.value;
+            // formObj.date = dateInput.value;
             formObj.features = features.join();
         } else {
             formObj.purpose = "Contact";
-            formObj.subject = subjectInput.value;
+            formObj.subject = subjectInput.val();
+            // formObj.subject = subjectInput.value;
         }
-        formObj.message = messageInput.value;
+        formObj.message = messageInput.val();
+        // formObj.message = messageInput.value;
 
         // stringify the form object
         formStr = JSON.stringify(formObj);
@@ -419,20 +477,25 @@ function displayCalendar(whichMonth) {
         daysInMonth = 30;
     }
 
-    dateCells = document.getElementsByTagName("td");
+    dateCells = $("td"); //document.getElementsByTagName("td");
     for (i = 0; i < dateCells.length; i += 1) {
         // clear existing table dates
-        dateCells[i].innerHTML = "";
-        dateCells[i].className = "";
+        dateCells.eq(i).html("");
+        dateCells.eq(i).attr("class", "");
+        // dateCells[i].innerHTML = "";
+        // dateCells[i].className = "";
     }
 
     for (i = dayOfWeek; i < daysInMonth + dayOfWeek; i += 1) {
         // add dates to days cells
-        dateCells[i].innerHTML = dateObj.getDate();
-        dateCells[i].className = "date";
+        dateCells.eq(i).html(dateObj.getDate());
+        dateCells.eq(i).addClass("date");
+        // dateCells[i].innerHTML = dateObj.getDate();
+        // dateCells[i].className = "date";
 
         if (dateToday < dateObj) {
-            dateCells[i].className = "futuredate";
+            dateCells.eq(i).toggleClass("futuredate");
+            // dateCells[i].className = "futuredate";
         }
 
         date = dateObj.getDate() + 1;
@@ -441,20 +504,25 @@ function displayCalendar(whichMonth) {
 
     dateObj.setMonth(dateObj.getMonth() - 1);
     // reset month to month shown
-    document.getElementById("cal").style.display = "block";
+    $("#cal").show();
+    // document.getElementById("cal").style.display = "block";
     // display calendar if it's not already visible
 }
 
 function hideCalendar() {
-    document.getElementById("cal").style.display = "none";
+    $("#cal").hide();
+    // document.getElementById("cal").style.display = "none";
 }
 
 // calculate elapsed date since unix epoch time
 // and from present day based on input date
 function calcDate() {
-    var inputYear = new Date(dateInput.value).getUTCFullYear(),
-        inputMonth = new Date(dateInput.value).getUTCMonth(),
-        inputDay = new Date(dateInput.value).getUTCDate(),
+    var inputYear = new Date(dateInput.val()).getUTCFullYear(),
+        inputMonth = new Date(dateInput.val()).getUTCMonth(),
+        inputDay = new Date(dateInput.val()).getUTCDate(),
+        // var inputYear = new Date(dateInput.value).getUTCFullYear(),
+        //     inputMonth = new Date(dateInput.value).getUTCMonth(),
+        //     inputDay = new Date(dateInput.value).getUTCDate(),
         epochYear = 1970,
         epochMonth = 0,
         epochDay = 1,
@@ -612,8 +680,10 @@ function calcDate() {
     }
 
     // print the string and show it to the user
-    warningDate.innerHTML = dateString;
-    warningDate.style.display = "block";
+    warningDate.html(dateString);
+    warningDate.show();
+    // warningDate.innerHTML = dateString;
+    // warningDate.style.display = "block";
 }
 
 function selectDate(event) {
@@ -629,8 +699,10 @@ function selectDate(event) {
     callerElement = event.target || event.srcElement;
 
     if (callerElement.innerHTML === "") {
+        // if (callerElement.innerHTML === "") {
         // cell contains no date, so don't close the calendar
-        document.getElementById("cal").style.display = "block";
+        $("#cal").show();
+        // document.getElementById("cal").style.display = "block";
         return false;
     }
 
@@ -641,11 +713,13 @@ function selectDate(event) {
     selectedDate = Date.UTC(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
 
     if (selectedDate <= dateToday) {
-        document.getElementById("cal").style.display = "block";
+        $("#cal").show();
+        // document.getElementById("cal").style.display = "block";
         return false;
     }
 
-    dateInput.value = dateObj.toLocaleDateString();
+    dateInput.val(dateObj.toLocaleDateString());
+    // dateInput.value = dateObj.toLocaleDateString();
 
     hideCalendar();
     calcDate();
@@ -684,110 +758,133 @@ function saveFeatures(evt) {
 function createEventListeners() {
 
     // check form purpose for reservationRadio
-    if (document.addEventListener) {
-        reserveRadio.addEventListener("change", checkPurpose, false);
-    } else if (document.attachEvent) {
-        reserveRadio.attachEvent("onchange", checkPurpose);
-    }
+    reserveRadio.change(checkPurpose);
+    // if (document.addEventListener) {
+    //     reserveRadio.addEventListener("change", checkPurpose, false);
+    // } else if (document.attachEvent) {
+    //     reserveRadio.attachEvent("onchange", checkPurpose);
+    // }
 
     // check form purpose for contactRadio
-    if (document.addEventListener) {
-        contactRadio.addEventListener("change", checkPurpose, false);
-    } else if (document.attachEvent) {
-        contactRadio.attachEvent("onchange", checkPurpose);
-    }
+    contactRadio.change(checkPurpose);
+    // if (document.addEventListener) {
+    //     contactRadio.addEventListener("change", checkPurpose, false);
+    // } else if (document.attachEvent) {
+    //     contactRadio.attachEvent("onchange", checkPurpose);
+    // }
 
     // get number of guests input
-    if (document.addEventListener) {
-        guestsInput.addEventListener("change", calcTables, false);
-    } else if (document.attachEvent) {
-        guestsInput.attachEvent("onchange", calcTables);
-    }
+    guestsInput.change(calcTables);
+    // if (document.addEventListener) {
+    //     guestsInput.addEventListener("change", calcTables, false);
+    // } else if (document.attachEvent) {
+    //     guestsInput.attachEvent("onchange", calcTables);
+    // }
 
     // get submit event from form
-    if (document.addEventListener) {
-        form.addEventListener("submit", validate, false);
-    } else if (document.attachEvent) {
-        form.attachEvent("onsubmit", validate);
-    }
+    form.submit(validate);
+    // if (document.addEventListener) {
+    //     form.addEventListener("submit", validate, false);
+    // } else if (document.attachEvent) {
+    //     form.attachEvent("onsubmit", validate);
+    // }
 
     // display calendar
-    if (document.addEventListener) {
-        dateInput.addEventListener("click", displayCalendar, false);
-    } else if (document.attachEvent) {
-        dateInput.attachEvent("onclick", displayCalendar);
-    }
+    dateInput.click(displayCalendar);
+    // if (document.addEventListener) {
+    //     dateInput.addEventListener("click", displayCalendar, false);
+    // } else if (document.attachEvent) {
+    //     dateInput.attachEvent("onclick", displayCalendar);
+    // }
 
     // calendar elements
-    var dateCells = document.getElementsByTagName("td"),
+    var dateCells = $("td"), //document.getElementsByTagName("td"),
         i,
-        closeBtn = document.getElementById("close"),
-        prevLink = document.getElementById("prev"),
-        nextLink = document.getElementById("next");
+        closeBtn = $("#close"), //document.getElementById("close"),
+        prevLink = $("#prev"), //document.getElementById("prev"),
+        nextLink = $("#next"); //document.getElementById("next");
 
     // select date on calendar
-    if (document.addEventListener) {
-        for (i = 0; i < dateCells.length; i += 1) {
-            dateCells[i].addEventListener("click", selectDate, false);
-        }
-    } else if (document.attachEvent) {
-        for (i = 0; i < dateCells.length; i += 1) {
-            dateCells[i].attachEvent("onclick", selectDate);
-        }
+    for (i = 0; i < dateCells.length; i += 1) {
+        dateCells.eq(i).click(selectDate);
     }
+    // if (document.addEventListener) {
+    //     for (i = 0; i < dateCells.length; i += 1) {
+    //         dateCells[i].addEventListener("click", selectDate, false);
+    //     }
+    // } else if (document.attachEvent) {
+    //     for (i = 0; i < dateCells.length; i += 1) {
+    //         dateCells[i].attachEvent("onclick", selectDate);
+    //     }
+    // }
 
     // hide calendar
-    if (document.addEventListener) {
-        closeBtn.addEventListener("click", hideCalendar, false);
-    } else if (document.attachEvent) {
-        closeBtn.attachEvent("onclick", hideCalendar);
-    }
+    closeBtn.click(hideCalendar);
+    // if (document.addEventListener) {
+    //     closeBtn.addEventListener("click", hideCalendar, false);
+    // } else if (document.attachEvent) {
+    //     closeBtn.attachEvent("onclick", hideCalendar);
+    // }
 
     // change month on calendar
-    if (document.addEventListener) {
-        prevLink.addEventListener("click", prevMo, false);
-        nextLink.addEventListener("click", nextMo, false);
-    } else if (document.attachEvent) {
-        prevLink.attachEvent("onclick", prevMo);
-        nextLink.attachEvent("onclick", nextMo);
-    }
+    prevLink.click(prevMo);
+    nextLink.click(nextMo);
+    // if (document.addEventListener) {
+    //     prevLink.addEventListener("click", prevMo, false);
+    //     nextLink.addEventListener("click", nextMo, false);
+    // } else if (document.attachEvent) {
+    //     prevLink.attachEvent("onclick", prevMo);
+    //     nextLink.attachEvent("onclick", nextMo);
+    // }
 
     // get date change event
-    if (document.addEventListener) {
-        dateInput.addEventListener("change", calcDate, false);
-    } else if (document.attachEvent) {
-        dateInput.attachEvent("onchange", calcDate);
-    }
+    dateInput.change(calcDate);
+    // if (document.addEventListener) {
+    //     dateInput.addEventListener("change", calcDate, false);
+    // } else if (document.attachEvent) {
+    //     dateInput.attachEvent("onchange", calcDate);
+    // }
 
     // get checkbox change event
-    if (document.addEventListener) {
-        for (i = 0; i < featuresInput.length; i += 1) {
-            featuresInput[i].addEventListener("change", saveFeatures, false);
-        }
-    } else if (document.attachEvent) {
-        for (i = 0; i < featuresInput.length; i += 1) {
-            featuresInput[i].attachEvent("onchange", saveFeatures);
-        }
+    for (i = 0; i < featuresInput.length; i += 1) {
+        featuresInput[i].change(saveFeatures);
     }
+    // if (document.addEventListener) {
+    //     for (i = 0; i < featuresInput.length; i += 1) {
+    //         featuresInput[i].addEventListener("change", saveFeatures, false);
+    //     }
+    // } else if (document.attachEvent) {
+    //     for (i = 0; i < featuresInput.length; i += 1) {
+    //         featuresInput[i].attachEvent("onchange", saveFeatures);
+    //     }
+    // }
 }
 
 // sets all form field values to defaults
 function resetForm() {
-    nameInput.value = "";
-    emailInput.value = "";
-    guestsInput.value = 0;
-    subjectInput.value = "";
-    messageInput.value = "";
-    guestsField.style.display = "none";
-    subjectField.style.display = "none";
+    nameInput.val("");
+    emailInput.val("");
+    guestsInput.val(0);
+    subjectInput.val("");
+    messageInput.val("");
+    guestsField.hide();
+    subjectField.hide();
+    // nameInput.value = "";
+    // emailInput.value = "";
+    // guestsInput.value = 0;
+    // subjectInput.value = "";
+    // messageInput.value = "";
+    // guestsField.style.display = "none";
+    // subjectField.style.display = "none";
     calcTables();
     createEventListeners();
     checkPurpose();
 }
 
 // resets form inputs
-if (document.addEventListener) {
-    window.addEventListener("load", resetForm, false);
-} else if (document.attachEvent) {
-    window.attachEvent("onload", resetForm);
-}
+$(window).on("load", resetForm);
+// if (document.addEventListener) {
+//     window.addEventListener("load", resetForm, false);
+// } else if (document.attachEvent) {
+//     window.attachEvent("onload", resetForm);
+// }
