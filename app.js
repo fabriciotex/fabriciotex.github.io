@@ -187,7 +187,7 @@ function validateEmail(obj) {
             // warningEmail.innerHTML = "Did you mean: " + obj.did_you_mean + "?";
         } else if (valid) {
             warningEmail.hide();
-            warningEmail.style.display = "none";
+            // warningEmail.style.display = "none";
         }
         $("#jsonp").remove();
         // var script = document.getElementById("jsonp");
