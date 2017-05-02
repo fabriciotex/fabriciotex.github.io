@@ -279,14 +279,15 @@ function validateNumberGuests() {
 function validateDate() {
     var valid = true,
         warning,
-        re = /(0?[1-9]|1[012])[- \/.](0?[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d/;
+        re = /(0?[1-9]|1[012])[- \/.](0?[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d/,
+        dateInputValue = dateInput.val();
     try {
         if (dateInput.val() === "") {
             // if (dateInput.value === "") {
             throw "Please enter the date of your reservation.";
         }
 
-        if (!re.test(dateInput.val())) {
+        if (!re.test(dateInputValue)) {
             // if (!re.test(dateInput.value)) {
             throw "Invalid date format. Try again.";
         }
