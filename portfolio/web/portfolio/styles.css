@@ -1,0 +1,429 @@
+/* fTex Portfolio's Website
+
+Author: Fabricio Teixeira
+
+Date: 12/03/2016
+
+*/
+
+/* Style for every element tag on website */		
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+/* Style for defining the html and body tags with 100% height of the browser window and white-ish background color */
+html,
+body{
+	height: 100%;
+	background-color: #f1f1f1;
+}
+
+/* Font family style for headings */
+h1, h2, h3, h4 {
+	font-family: Georgia, "Times New Roman", serif;
+}
+
+/* Font family for paragraphs */
+p {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+/* Style for the navigation bars on top and bottom of the website */
+nav {
+	background: #222;
+	color: #f1f1f1;
+	padding: 20px;
+	height: 20px;
+}
+
+/* Style for the div container that contains the logo on the navbar */
+nav div {
+	float: left;
+	font-weight: bold;
+	margin-top: -5px;
+}
+
+/* Style for anchor points in navbar's div */
+nav div a {
+	font-size: 2em;
+}
+
+/* Style for every anchor in the navbar */
+nav a {
+	text-decoration: none;
+	color: #f0f0f0;
+}
+
+/* Style for the unordered list on the navbar */
+nav ul {
+	float: right;
+}
+
+/* Style for the list items on the navbar */
+nav li {
+	list-style: none;
+	display: inline-block;
+	margin: 0 5px;
+}
+
+/* Change the color for the list items when hovered */
+nav li a:hover{
+	color: #777;
+}
+
+/* Class to set the navbar anchor active when page is opened */
+.active a {
+	border-bottom: 1px solid #777;
+	color: #777;
+}
+
+/* Style for the website cover image */
+.cover {
+  	background-size: cover;
+  	width: 100%;
+  	display: table;
+	height: 60%;
+}
+
+/* Defining the image in home page cover */
+#home {
+	background: url('img/home.jpg') center center no-repeat;
+}
+
+/* Defining the image in about page cover */
+#about {
+	background: url('img/about.jpg') center center no-repeat;
+}
+
+/* Defining the image in projects page cover */
+#projects {
+	background: url('img/projects.jpg') center center no-repeat;
+}
+
+/* Defining the image in contact page cover */
+#contact {
+	background: url('img/contact.jpg') center center no-repeat;
+}
+
+/* Defining the image in project 1 page cover */
+#p1{
+	background: url('projects/img/p1.png') center center no-repeat;
+}
+
+/* Defining the image in project 2 page cover */
+#p2{
+	background: url('projects/img/p2.png') center center no-repeat;
+}
+
+/* Defining the image in project 3 page cover */
+#p3{
+	background: url('projects/img/p3.png') center center no-repeat;
+}
+
+/* Defining the image in project 4 page cover */
+#p4{
+	background: url('projects/img/p4.png') center center no-repeat;
+}
+
+/* Defining the image in project 5 page cover */
+#p5{
+	background: url('projects/img/p5.png') center center no-repeat;
+}
+
+/* Defining the image in project 6 page cover */
+#p6{
+	background: url('projects/img/p6.png') center center no-repeat;
+}
+
+/* Style for the text that goes over the cover image */
+.cover-text {
+    text-align: center;
+    color: white;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* Style for the heading on cover text container */
+.cover-text h1 {
+    font-size: 70px;
+}
+
+/* Style for all website sections */
+section {
+	width: 100%;	
+	color: #222;
+	background-color: #f0f0f0;
+}
+
+/* Style for headings 1 and paragraphs on website's sections */
+section h1, p {
+	text-shadow: 1px 1px 5px #222;
+}
+
+/* Style for 1/3 column */
+.col {
+	color: #222;
+	box-sizing: border-box;
+	float: left;
+	width: 30%;
+	margin: 1.6666%;
+	padding: 20px;
+}
+
+/* Style for 2/3 column */
+.col2 {
+	color: #222;
+	box-sizing: border-box;
+	float: left;
+	width: 60%;
+	margin: 3.3333%;
+	padding: 20px;
+}
+
+/* Style for 1/2 column */
+.col3 {
+	color: #222;
+	box-sizing: border-box;
+	float: left;
+	width: 45%;
+	margin: 2.5%;
+	padding: 20px;
+}
+
+/* Style for paragraphs within columns */
+.col p, .col2 p, .col3 p {
+	text-shadow: none;
+}
+
+/* Style for anchor points hovered in columns */
+.col a:hover {
+	opacity: 0.7;
+}
+
+/* Style for the video inside column 3 */
+.col3 video {
+	width: 100%;
+}
+
+/* Style for the anchor button in homepage and project links */
+.more {
+	width: 20px;
+	height: 20px;
+	float: right;
+	background-color: #222;
+	color: #f0f0f0;
+	text-decoration: none;
+	text-align: center;
+	line-height: 20px;
+}
+
+/* Style for the anchor button in homepage and project links when hovered*/
+.more:hover {
+	color: #222;
+	background-color: #f0f0f0;
+	cursor: pointer;
+}
+
+/* Style for the anchor button in homepage and project links when mouse down*/
+.more:active {
+	box-shadow: inset 1px 1px #555;
+}
+
+/* Style for all img elements inside secctions */
+section img{
+	width: 100%;
+}
+
+/* Style for the img class to be with full round border */
+.img {
+	border-radius: 100%;
+}
+
+/* Style for override the img class border on project pages */
+#p1Page .img, #p2Page .img, #p3Page .img, #p4Page .img, #p5Page .img, #p6Page .img {
+	border-radius: 0;
+}
+
+/* Style for the image map container element */
+#imageMap img {
+	width: 18px;
+	float: left;
+	margin: 10px 5px 0 0;
+}
+
+/* Style for changing the top margin on the contact page paragraphs */
+#contactPage p {
+	margin-top: 10px;
+}
+
+/* Style for anchor points on the contact page */
+#contactPage a {
+	text-decoration: none;
+	color: #222;
+}
+
+/* Style for anchor points on the contact page when hovered */
+#contactPage a:hover {
+	color: #555;
+}
+
+/* Style for overflow the table if container is too small - normally for smaller mobile devices*/
+#tableContainer {
+	overflow: auto;
+}
+
+/* Remove padding and margin from table element */
+table {
+	padding: 0;
+	margin: 0;
+}
+
+/* Define style for table rows, headers and data */
+tr, th, td {
+	margin: 0;
+	padding: 5px;
+	border: none;
+	text-align: center;
+}
+
+/* Change the color of odd rows of the table */
+tr:nth-child(odd) {
+	background-color: #ddd;
+}
+
+/* Define a border and padding for the form element */
+form {
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+/* Styles for the input and textarea elements on form */
+form input, textarea {
+	display: block;
+	padding: 5px;
+	width: 98%;
+	border: 0;
+	margin-bottom: 10px;
+}
+
+/* Remove resize handle from textarea */
+form textarea {
+	resize: none;
+}
+
+/* Style the paragraph on form (it is the field required warning) */
+form p {
+	margin: 10px;
+	font-style: italic;
+	font-size: 0.7em;
+	text-align: right;
+}
+
+/* Style the submit button */
+#submit {
+	float: right;
+	padding: 10px;
+	background-color: #222;
+	border: none;
+	color: #f0f0f0;
+}
+
+/* Style the submit button when hovered over */
+#submit:hover {
+	color: #222;
+	background-color: #f0f0f0;
+	cursor: pointer;
+}
+
+/* Style the submit button when clicked*/
+#submit:active {
+	box-shadow: inset 1px 1px #555;
+}
+
+/* Clear floats */
+.clear {
+	clear: both;
+}
+
+/* Style the footer */
+footer {
+	clear: both;
+	background: #222;
+  	color: #f0f0f0;
+  	text-align: center;
+  	padding: 20px;
+}
+
+/* Style the footer horizontal line color and margin*/
+footer hr {
+	margin-bottom: 5px;
+	border-color: #a1a1a1;
+}
+
+/* Style for the footer anchor points */
+footer a {
+    color: #f0f0f0;
+}
+
+/* Style for the footer anchor points when hovered over */
+footer a:hover {
+    color: #ddd;
+}
+
+/* Styles for mobile screens 568px wide */
+@media only screen and ( max-width : 768px ) {
+
+	/* Change the nav height and alignment */
+	nav {
+		height: 150px;
+		text-align: center;
+	}
+	
+	/* Remove float from the nav div and ul */
+	nav div, nav ul {
+		float: none;
+	}
+	
+	/* Display the nav list items as a block with a little distance between them */
+	nav li {
+		display: block;
+		margin: 10px;
+	}
+
+	/* Change the font size for the cover heading */
+	.cover h1 {
+   		font-size: 40px;
+  	}
+	
+	/* Change the columns width and margin to show in one column layout */
+	.col, .col2, .col3 {
+		width: 100%;
+		margin: 20px auto 30px;
+	}
+	
+	/* Change the img class margin and to display in the center of the page */
+	.img {
+		margin: -30px auto;
+		display: table-cell;
+	}
+
+	/* Change the about img size */
+	#aboutImg {
+		width: 50%;
+	}
+	
+	/* Change the anchor point to fill the whole width of the page and grow in height */
+	.more{
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		margin-top: 5px;
+  	}
+
+  	/* Approximate the form to the table */
+	form {
+		margin-top: -50px;
+	}
+}

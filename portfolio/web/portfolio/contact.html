@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<!-- fTex Portfolio's Website
+
+		Author: Fabricio Teixeira
+
+		Date: 12/03/2016
+
+		-->
+
+		<!-- Define charset of website -->
+		<meta charset="utf-8">
+
+		<!-- Define viewport for mobile capabilities -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!-- Website title -->
+		<title>fTex Web &amp; Design | Contact</title>
+
+		<!-- CSS Stylesheet -->
+		<link href="styles.css" rel="stylesheet">
+		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+				<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+				<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<!-- Navigation bar -->
+		<nav>
+			<div>
+				<!-- Logo with link to home page -->
+				<a href="index.html">fTex</a>
+			</div>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="projects.html">Projects</a></li>
+				<li class="active"><a href="contact.html">Contact</a></li>
+			</ul>
+		</nav>
+
+		<!-- Cover image -->
+		<section class="cover" id="contact">
+			<!-- Cover title and subtitle -->
+			<div class="cover-text">
+				<h1>Contact us</h1>
+				<p>We'd like to hear from you!</p>
+			</div>
+		</section>
+
+		<!-- Contact links and form -->
+		<section id="contactPage">
+			<div class="row">
+				<!-- Contact links -->
+				<div class="col3">
+					<!-- This class is to separate the page into 1/2 column -->
+					<h3>Talk to us!</h3>
+					<!-- Image map -->
+					<div id="imageMap">
+						<img src="img/contact.png" alt="Email, Phone number and Skype name" usemap="#contactmap">
+						<map name="contactmap">
+						 	<area shape="rect" coords="0,0,17,14" alt="email" href="mailto:email@email.com">
+						 	<area shape="rect" coords="0,27,17,40" alt="phone" href="tel:9999999999">
+						 	<area shape="rect" coords="0,56,17,71" alt="skype" href="skype:skypename?call">
+						</map>
+					</div>
+					<!-- Paragraphs with contact information -->
+					<div id="contactPs">
+						<p><a href="mailto:email@email.com">email@email.com</a></p>
+						<p><a href="tel:9999999999">999 999 9999</a></p>
+						<p><a href="skype:skypename?call">skypename</a></p>
+					</div>
+
+					<!-- Break lines and horizontal rule -->
+					<br>
+					<hr>
+					<br>
+
+					<!-- Pricing table -->
+					<h3>How we Price?</h3>
+					<div id="tableContainer">
+						<table>
+							<tr>
+								<th>Logo</th>
+								<th>Video</th>
+								<th>Advertisement</th>
+							</tr>
+							<tr>
+								<td>Per project</td>
+								<td>Hourly</td>
+								<td>Hourly</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<!-- Contact Form -->
+				<div class="col3">
+					<!-- This class is to separate the page into 1/2 column -->
+					<form action="http://webdevbasics.net/scripts/pacific.php" method="post">
+						<label for="name">Name<sup>*</sup></label>
+						<input type="text" name="name" id="name" placeholder="John Doe" required>
+						<label for="email">Email<sup>*</sup></label>
+						<input type="email" name="email" id="email" placeholder="jdoe@email.com" required>
+						<label for="message">Message</label>
+						<textarea name="message" id="message" placeholder="Hello!" rows="5"></textarea>
+						<p>*Fields required.</p>
+						<button type="submit" name="submit" id="submit">Send message!</button>
+						<div class="clear"></div>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer>
+			<!-- Navigation bar on footer section-->
+			<nav>
+				<div>
+					<!-- Logo with link to home page -->
+					<a href="index.html">fTex</a>
+				</div>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="projects.html">Projects</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</nav>
+			<hr>
+			<p><small>Made with &hearts; by <a href="https://fabriciotex.github.io">fTex</a></small></p>
+		</footer>
+
+	</body>
+
+</html>

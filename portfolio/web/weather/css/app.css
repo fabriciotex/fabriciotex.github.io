@@ -1,0 +1,21 @@
+body {
+    background-color: #1A1A1A;
+    color: #F1F1F1;
+}
+
+main {
+    padding: 3%;
+    margin: 5% auto;
+    max-width: 50%;
+    border-radius: 15px;
+}
+
+h1 {
+    font-size: 10em;
+    margin: 0;
+}
+
+h2 {
+    font-size: 2em;
+    margin: 1%;
+}

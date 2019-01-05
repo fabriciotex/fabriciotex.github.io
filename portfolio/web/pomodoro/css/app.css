@@ -1,0 +1,49 @@
+section {
+    margin: 1% 0;
+}
+
+#menu {
+    background: #F1F1F1;
+    padding: 1%;
+    color: #555;
+    font-size: 1.5em;
+    border-radius: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#menu .row {
+    margin: 1% 0;
+}
+
+#menu #rest,
+#pomodoro {
+    background: #555;
+    color: #F1F1F1;
+}
+
+#clock {
+    background: #E74C3C;
+    width: 8em;
+    height: 8em;
+    border-radius: 100%;
+    cursor: pointer;
+    border: 0 solid #C0392B;
+    font-size: 5em;
+    margin: auto;
+}
+
+#timer {
+    width: 8em;
+    line-height: 8em;
+    font-size: 5em;
+    /* text-weight: bold; */
+    color: #F1F1F1;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    top: -8em;
+    border-radius: 100%;
+    cursor: pointer;
+    margin-bottom: -7.5em;
+}

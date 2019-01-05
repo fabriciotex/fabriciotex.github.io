@@ -1,0 +1,64 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    background:url(../images/bg.png) top left no-repeat;
+	background-color:#EBD9C4;
+    font-family:Arial;
+    font-size: 30px;
+    font-style: italic;
+    letter-spacing:-1px;
+    width:12288px;
+    position:absolute;
+    top:0px;
+    left:0px;
+    bottom:0px;
+	overflow:hidden;
+}
+#logo{
+	float:none;
+	width:500px;
+	height:100px;
+	margin:210px 0px 0px 0px;
+}
+#trem1{
+	margin:0px 0px 0px 30px;
+}
+.section{
+    margin:0px;
+    bottom:0px;
+    width:3072px;
+    float:left;
+    height:100%;
+    /*text-shadow:1px 1px 1px #FFF;*/
+}
+.section h2{
+    margin:50px 0px 30px 50px;
+}
+.section p{
+    margin:20px 0px 0px 50px;
+    width:600px;
+}
+.black{
+    color:#624E42 ;
+   
+}
+.section ul{
+    list-style:none;
+    margin:20px 0px 0px 40px;
+}
+.black ul li{
+    float:left;
+    padding:5px;
+    margin:5px;
+    color:#F39200;
+}
+.black ul li a{
+    display:block;
+    color:#624E42;
+}
+.black ul li a:hover{
+    text-decoration:none;
+    color:#F39200;
+}

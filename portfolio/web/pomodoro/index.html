@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <title>FCC Pomodoro Clock</title>
+
+        <!-- CDN -->
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.3/normalize.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/app.css" />
+    </head>
+
+    <body>
+        <main>
+            <section>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div id="clock"></div>
+                    </div>
+                    <div class="col-xs-12 text-center">
+                        <div id="timer">Pomodoro <i class="fa fa-clock-o"></i></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="menu" class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+                        <div id="restMenu" class="row">
+                            <div class="col-xs-3">
+                                Rest
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="btn btn-block btn-danger">-</div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div id="rest">5</div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="btn btn-block btn-success">+</div>
+                            </div>
+                            <div class="col-xs-3">
+                                minutes
+                            </div>
+                        </div>
+                        <div id="pomodoroMenu" class="row">
+                            <div class="col-xs-3">
+                                Pomodoro
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="btn btn-block btn-danger">-</div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div id="pomodoro">25</div>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="btn btn-block btn-success">+</div>
+                            </div>
+                            <div class="col-xs-3">
+                                minutes
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="row">
+                <div class="text-center">Made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://fabriciotex.github.io">fabriciotex</a>
+                </div>
+            </div>
+        </footer>
+    </body>
+
+    <!-- JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+
+</html>

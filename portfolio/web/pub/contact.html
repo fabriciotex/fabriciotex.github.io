@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <!--
+
+      Author: Fabricio Teixeira
+      Date:   02/02/2017
+
+      Filename: index.html
+   -->
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>The Pub</title>
+        <link rel="stylesheet" href="app.css">
+        <script src="modernizr.custom.05819.js"></script>
+    </head>
+
+    <body>
+        <header>
+
+            <!-- Website logo -->
+            <h1><a href="index.html">The Pub</a></h1>
+
+            <!-- Navigation bar -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+
+        </header>
+
+        <main>
+
+            <!-- Cover image -->
+            <section id="contact" class="cover">
+                <div class="cover-text">
+                    <h2>Make a Reservation</h2>
+                    <p>Call your friends and let us know when you are coming!</p>
+                </div>
+            </section>
+
+            <!-- Contact info and form -->
+
+            <article>
+                <h2>Talk to us!</h2>
+                <div class="row">
+                    <div class="col2">
+                        <p><a href="mailto:email@email.com">email@email.com</a></p>
+                        <p><a href="tel:9999999999">999 999 9999</a></p>
+                        <p><a href="skype:skypename?call">skypename</a></p>
+                    </div>
+
+                    <div class="col2">
+                        <form action="#" method="post" novalidate>
+                            <label for="name">Name<sup>*</sup></label>
+                            <input type="text" name="name" id="name" placeholder="ex. John Doe">
+                            <p id="warningName" class="warning"></p>
+                            <label for="email">Email<sup>*</sup></label>
+                            <input type="email" name="email" id="email" placeholder="ex. jdoe@email.com">
+                            <p id="warningEmail" class="warning"></p>
+
+                            <label>Purpose of contact<sup>*</sup></label>
+                            <input type="radio" id="reservationRadio" name="purpose" value="reservation" checked> Reservation
+                            <input type="radio" id="contactRadio" name="purpose" value="contact"> Contact
+                            <p id="warningPurpose" class="warning"></p>
+
+                            <div id="guestsField">
+                                <label for="guests">Number of Guests<sup>*</sup> <small><em>(You and your friends!)</em></small></label>
+                                <input type="number" name="guests" id="guests" min="0">
+                                <p id="warningGuests" class="warning"></p>
+
+                                <label for="date">Date of the event<sup>*</sup></label>
+                                <input type="text" name="date" id="date">
+                                <p id="warningDate" class="warning"></p>
+                                <!-- calendar element -->
+                                <div id="cal">
+                                    <div id="close" class="icon">&times;</div>
+                                    <div class="clearfix"></div>
+                                    <div>
+                                        <div id="prev" class="icon">&#9664;</div>
+                                        <div id="caption"></div>
+                                        <div id="next" class="icon">&#9654;</div>
+                                    </div>
+                                    <table>
+                                        <tr>
+                                            <th>Sun</th>
+                                            <th>Mon</th>
+                                            <th>Tue</th>
+                                            <th>Wed</th>
+                                            <th>Thu</th>
+                                            <th>Fri</th>
+                                            <th>Sat</th>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <label>Features Wanted</label>
+                                <div class="col2">
+                                    <input type="checkbox" name="features" value="B-Day Cake" /> B-Day Cake<br/>
+                                    <input type="checkbox" name="features" value="Drink Combos" /> Drink Combos<br/>
+                                    <input type="checkbox" name="features" value="B-Day Decoration" /> B-Day Decoration<br/>
+                                </div>
+                                <div class="col2">
+                                    <input type="checkbox" name="features" value="Snacks Buffet" /> Snacks Buffet<br/>
+                                    <input type="checkbox" name="features" value="Patio Area" /> Patio Area<br/>
+                                    <input type="checkbox" name="features" value="VIP Area" /> VIP Area<br/>
+                                </div>
+                            </div>
+
+                            <div id="subjectField">
+                                <label for="subject">Subject<sup>*</sup></label>
+                                <input type="text" name="subject" id="subject" placeholder="ex. Contact">
+                                <p id="warningSubject" class="warning"></p>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <label for="message">Message</label>
+                            <textarea name="message" id="message" placeholder="ex. Hello!" rows="5"></textarea>
+                            <p id="warningMessage" class="warning"></p>
+                            <p>*Fields required.</p>
+                            <button type="submit" name="submitBtn" id="submitBtn">Send message!</button>
+                            <div class="clearfix"></div>
+                        </form>
+
+                    </div>
+
+                </div>
+            </article>
+
+        </main>
+
+        <!-- Website footer -->
+        <footer>
+            <!-- Website logo -->
+            <h2><a href="index.html">The Pub</a></h2>
+
+            <!-- Secondary navigation bar -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="security.html">Securitiy</a></li>
+                </ul>
+            </nav>
+            <hr>
+
+            <!-- Copyright information -->
+            <p><small>Made with &hearts; by <a href="https://fabriciotex.github.io">fabriciotex</a></small></p>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="app.js"></script>
+    </body>
+
+</html>

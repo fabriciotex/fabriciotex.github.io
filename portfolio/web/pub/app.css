@@ -1,0 +1,431 @@
+/* The Pub Website
+
+Author: Fabricio Teixeira
+Date:		02/02/2017
+
+Filename: app.css
+
+*/
+
+
+/* CSS Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Structure */
+
+html, body {
+    height: 100%;
+    line-height: 1.5;
+    font-family: Helvetica, Arial, sans-serif;
+    background: #333;
+    color: #f1f1f1;
+}
+
+header {
+    background: #222;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #fc3;
+}
+
+nav li {
+    display: inline-block;
+    list-style: none;
+}
+
+main {
+    height: 100%;
+}
+
+.row {
+    width: 100%;
+    height: 100%;
+    clear: both;
+}
+
+.col {
+    width: 100%;
+}
+
+.col2 {
+    width: 50%;
+}
+
+.col3 {
+    width: 33.333%;
+}
+
+.col, .col2, .col3 {
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+img {
+    width: 100%;
+}
+
+
+/* Header */
+
+header {
+    padding: 10px;
+}
+
+header nav {
+    border-top: 2px solid #fc3;
+    border-bottom: 2px solid #fc3;
+    margin-bottom: 10px;
+}
+
+header nav a {
+    padding: .5em 2em;
+}
+
+header nav a:hover, header nav .active {
+    background: #fc3;
+    color: #222;
+}
+
+
+/* Article */
+
+article {
+    clear: both;
+    padding-top: 20px;
+}
+
+article h2 {
+    border-bottom: 2px solid #fc3;
+}
+
+
+/* Cover */
+
+.cover {
+    background-size: cover;
+    width: 100%;
+    display: table;
+    height: 50%;
+    float: none;
+}
+
+.cover-text {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.cover-text h2 {
+    font-size: 2.5em;
+    border: none;
+}
+
+.cover-text p {
+    font-style: italic;
+}
+
+#home {
+    background: url('img/home.jpg') center center no-repeat;
+}
+
+#menu {
+    background: url('img/menu.jpg') center center no-repeat;
+}
+
+#events {
+    background: url('img/events.jpg') center center no-repeat;
+}
+
+#contact {
+    background: url('img/contact.jpg') center center no-repeat;
+}
+
+#security {
+    background: url('img/security.jpg') center center no-repeat;
+}
+
+
+/* Buttons */
+
+.btn {
+    text-align: center;
+    background: #222;
+    display: block;
+    padding: 10px;
+    margin-top: 10px;
+    bottom: 0px;
+}
+
+.btn:hover {
+    background: #fc3;
+    color: #222;
+}
+
+
+/* Form */
+
+form {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+label {
+    color: #fc3;
+    font-family: Georgia, "Times New Roman", serif;
+    display: block;
+}
+
+input, textarea {
+    display: block;
+    padding: 5px;
+    width: 98%;
+    border: 0;
+    margin-bottom: 10px;
+}
+
+textarea {
+    resize: none;
+}
+
+form p {
+    margin: 10px;
+    font-style: italic;
+    font-size: 0.7em;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    width: auto;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.warning {
+    background: #fc3;
+    padding: 10px;
+    color: #222;
+    margin: 0 0 10px 0;
+    display: none;
+}
+
+#submitBtn {
+    float: right;
+    padding: 10px;
+    background-color: #222;
+    border: none;
+    color: #f0f0f0;
+}
+
+#submitBtn:hover {
+    color: #222;
+    background-color: #fc3;
+    cursor: pointer;
+}
+
+
+/* Calendar */
+
+#cal {
+    display: none;
+    background: #222;
+    color: white;
+    padding: 10px;
+    width: 50%;
+}
+
+#cal table {
+    margin: auto;
+}
+
+#caption {
+    font-weight: bold;
+    font-size: 14pt;
+    margin-bottom: 10px;
+    background: #fc3;
+    color: #333;
+    text-align: center;
+    float: left;
+    width: 78%;
+}
+
+#cal table th {
+    text-align: right;
+}
+
+#cal table th, #cal table td {
+    width: 2em;
+    padding: 4px;
+}
+
+#cal table td {
+    color: #bbb;
+    text-align: right;
+    cursor: pointer;
+}
+
+#prev {
+    cursor: pointer;
+    float: left;
+}
+
+#next {
+    cursor: pointer;
+    float: left;
+}
+
+#cal table td.futuredate {
+    color: white;
+}
+
+#cal table td.futuredate:hover, #prev:hover, #next:hover, #close:hover {
+    background: #fc3;
+    color: #333;
+}
+
+#close {
+    color: white;
+    cursor: pointer;
+    float: right;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.icon {
+    font-style: normal;
+    padding: 8.5px;
+    line-height: 10px;
+}
+
+
+/* Security */
+
+.table {
+    margin: 20px;
+    border: 1px solid #fc3;
+    clear: both;
+    display: table;
+}
+
+.table .row {
+    display: table;
+    text-align: center;
+}
+
+.table div.row div {
+    display: block;
+    line-height: 100%;
+}
+
+.row div a {
+    color: #fc3;
+}
+
+.row div a:hover {
+    color: #f1f1f1;
+}
+
+.table .row:nth-child(even) {
+    background-color: #444;
+}
+
+#map {
+    height: 20em;
+}
+
+
+/* Clearfix */
+
+.clearfix {
+    clear: both;
+}
+
+
+/* Footer */
+
+footer {
+    padding: 10px;
+    background: #222;
+    color: #f1f1f1;
+    text-align: center;
+    clear: both;
+}
+
+footer h2 a {
+    color: #fc3;
+    float: left;
+}
+
+footer nav {
+    float: right
+}
+
+footer nav li {
+    padding: .4em;
+}
+
+footer hr {
+    border-color: #fc3;
+    clear: both;
+}
+
+footer a:hover {
+    color: #fc3;
+}
+
+footer p {
+    margin: 10px;
+}
+
+footer p a {
+    color: #aaa;
+}
+
+
+/* Responsive to under 768px width devices */
+
+@media only screen and (max-width: 768px) {
+    /* Navs */
+    nav {
+        text-align: center;
+    }
+    nav ul, footer h2 a, footer nav {
+        float: none;
+    }
+    nav li {
+        display: block;
+        margin: 10px 0;
+    }
+    nav a {
+        display: block;
+    }
+    h1 {
+        font-size: 40px;
+    }
+    /* Change the columns width and margin to show in one column layout */
+    .col, .col2, .col3 {
+        width: 100%;
+        margin: 20px auto 30px;
+    }
+    .btn {
+        background: #fc3;
+        color: #222;
+    }
+    #submit {
+        background: #fc3;
+        width: 100%;
+        color: #222;
+    }
+}

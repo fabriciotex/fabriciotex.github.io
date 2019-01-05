@@ -1,0 +1,46 @@
+#box {
+    background-color: #FAFAFA;
+    padding: 5%;
+    margin-top: 3%;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px hsla(0, 0%, 0%, .5);
+}
+
+#box .row {
+    margin-top: 3%;
+}
+
+#box header {
+    color: #E5E5E5;
+    text-shadow: -1px -1px hsla(0, 0%, 0%, .3), 1px 1px hsla(0, 0%, 100%, .9);
+}
+
+#box header h3 {
+    font-size: 3em;
+    padding: 0;
+    margin: -7% 0 0;
+}
+
+#screen {
+    background-color: #FFF;
+    height: 60px;
+    border-radius: 10px;
+    box-shadow: -1px -1px hsla(0, 0%, 0%, .3), 1px 1px hsla(0, 0%, 100%, .5);
+}
+
+#screenChars {
+    text-align: right;
+    padding: 2%;
+    font-size: 3em;
+    line-height: 1em;
+}
+
+.btn {
+    font-weight: 900;
+    line-height: 3em;
+    font-size: 1.5em;
+}
+
+footer {
+    margin-top: 3%;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <title>FCC JavaScript Calculator </title>
+
+        <!-- CDN -->
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.3/normalize.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="css/app.css" />
+    </head>
+
+    <body>
+        <main>
+            <div class="row">
+                <div id="box" class="col-xs-12 col-sm-6 col-sm-offset-3">
+                    <header>
+                        <div class="row">
+                            <div class="text-center">
+                                <h3>JavaScript Calculator <i class="fa fa-calculator" aria-hidden="true"></i></h3>
+                            </div>
+                        </div>
+                    </header>
+                    <section>
+                        <div class="row">
+                            <div id="screen">
+                                <h2 id="screenChars"></h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div id="clearEverything" class="btn btn-danger btn-block">CE</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="sqRoot" class="value btn btn-info btn-block">&radic;</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="divide" class="value btn btn-info btn-block">&divide;</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div id="seven" class="value btn btn-warning btn-block">7</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="eight" class="value btn btn-warning btn-block">8</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="nine" class="value btn btn-warning btn-block">9</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="times" class="value btn btn-info btn-block">&times;</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div id="four" class="value btn btn-warning btn-block">4</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="five" class="value btn btn-warning btn-block">5</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="six" class="value btn btn-warning btn-block">6</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="minus" class="value btn btn-info btn-block">&minus;</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div id="one" class="value btn btn-warning btn-block">1</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="two" class="value btn btn-warning btn-block">2</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="three" class="value btn btn-warning btn-block">3</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="plus" class="value btn btn-info btn-block">&plus;</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div id="zero" class="value btn btn-warning btn-block">0</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="point" class="value btn btn-warning btn-block">.</div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div id="enter" class="value btn btn-primary btn-block">=</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="row">
+                <div class="col-xs-12 text-center">Made with <i class="fa fa-heart"></i> by <a href="https://fabriciotex.github.io" target="_blank">fabriciotex</a>.
+                </div>
+            </div>
+        </footer>
+    </body>
+
+    <!-- JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+
+</html>

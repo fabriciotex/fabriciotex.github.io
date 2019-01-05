@@ -1,0 +1,125 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+#container {
+    position: relative;
+}
+
+a, a:visited {
+    color: #777;
+}
+
+header, main, footer {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    padding-left: 1em;
+}
+
+h1 {
+    text-align: center;
+    background-color: #fff;
+    position: fixed;
+    width: 100%;
+    padding: 1em;
+    margin-top: 100px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+nav {
+    position: fixed;
+    top: 6em;
+    left: 2em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin-top: 1em;
+}
+
+ul ul {
+    padding-left: 1.5em;
+}
+
+main {
+    width: 70%;
+    margin: auto;
+    position: relative;
+    left: 2em;
+    top: 6em;
+    margin-bottom: 7em;
+    z-index: 0;
+}
+
+article {
+    margin-bottom: 5em;
+    border: .1em solid #333;
+    border-radius: .5em;
+    padding: .5em;
+}
+
+hr {
+    border: .05em solid #333;
+}
+
+p {
+    text-indent: 1em;
+}
+
+input+p {
+    display: inline;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%
+}
+
+caption {
+    margin-top: 1em;
+    padding: 1em;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+th, td {
+    padding: 1em;
+}
+
+tr:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    background: #333;
+    color: #fff;
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+footer a, footer a:visited {
+    color: #ddd;
+}
+
+.anchor {
+    display: block;
+    height: 100px;
+    margin-top: -100px;
+    visibility: hidden;
+}

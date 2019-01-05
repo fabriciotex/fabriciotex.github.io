@@ -1,0 +1,172 @@
+html, body {
+  height: 100%;
+}
+
+header#header {
+  background-color: gray;
+  height: 10%;
+}
+
+header#header h1 {
+  margin: 0;
+  padding: 1.5%;
+}
+
+li {
+  list-style: none;
+}
+
+nav {
+  width: 15%;
+  height: 85%;
+  background-color: #111;
+  color: white;
+  float: left;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+nav li {
+  padding: 10%;
+  background-color: #111;
+  margin: 0;
+  border: solid 1px #121212;
+  display: block;
+}
+
+nav li:hover {
+  background-color: #1a1a1a;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #f0f0f0;
+}
+
+main {
+  width: 85%;
+  height: 85%;
+  float: left;
+  background-color: #f0f0f0;
+}
+
+section#formandresult {
+  float: left;
+  width: 30%;
+  margin: 0;
+  height: 80%
+}
+
+form {
+  background-color: #efefef;
+  padding: 6%;
+}
+
+form label {
+  display: inline-block;
+  width: 20%;
+  margin-bottom: 0.5em;
+}
+
+form select {
+  display: inline-block;
+  width: 70%;
+}
+
+form #userQuery {
+  width: 50%;
+}
+
+form #submit {
+  width: 20%;
+}
+
+form #userQueryLbl, #userQuery, #submit {
+  display: none;
+}
+
+#result {
+  height: 90%;
+  background-color: #f0f0f0;
+  margin: 0;
+  overflow: auto;
+}
+
+#result main{
+  width: 100%;
+  height: 0;
+}
+
+#result #location {
+  padding: 20px 20px 10px;
+  background-color: #e5e5e5;
+}
+
+#result h2, h3 {
+  display: inline;
+}
+
+#result input {
+  float: right;
+}
+
+#result main ul {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+#result li {
+  background-color: #f9f9f9;
+  padding: 20px 20px 40px;
+  border: 1px solid #e5e5e5;
+  /*display: none;*/
+  height: 2.5em;
+}
+
+#result li main {
+  width: 100%;
+}
+#result li .name {  
+}
+
+#result li h4 {
+  margin: 0.1em 0; 
+}
+
+#result li h6 {
+  margin: 0;
+  display: none;
+}
+
+#result li p {
+  margin: 0;
+}
+
+article p {
+  display: inline-block;
+}
+
+
+#map {
+	width: 70%;
+  height: 100%;
+  float: left;
+}
+
+footer {
+  clear: both;
+  background-color: #111;
+  text-align: center;
+  color: #f0f0f0;
+  height: 5%;
+  padding-top: 0.3px;
+}

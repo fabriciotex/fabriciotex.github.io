@@ -1,0 +1,31 @@
+<?xml version='1.0'?>
+<rss version="2.0">
+<channel>
+<title>The Bakery News!</title>
+<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</description>
+<link>https://www.lampbusters.com/fabriciotex/final/</link>
+<copyright>Copyright 2017, The Bakery</copyright>
+
+<item>
+<title>New recipe on The Bakery</title>
+<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </description>
+<link>https://www.lampbusters.com/fabriciotex/final/recipes.php</link>
+<pubDate>5 May 2017 16:00:00 MST</pubDate>
+</item>
+
+<item>
+<title>New cake on The Bakery menu</title>
+<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </description>
+<link>https://www.lampbusters.com/fabriciotex/final/menu.php</link>
+<pubDate>6 May 2017 16:00:00 MST</pubDate>
+</item>
+
+<item>
+<title>New popcake on The Bakery menu</title>
+<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </description>
+<link>https://www.lampbusters.com/fabriciotex/final/menu.php</link>
+<pubDate>7 May 2017 16:00:00 MST</pubDate>
+</item>
+
+</channel>
+</rss>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>
+            JavaScript: regex Tutorial
+        </title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta name="dcterms.rightsHolder" content="fabriciotex" />
+        <meta name="dcterms.dateCopyrighted" content="2017" />
+        <meta name="description" content="A JavaScript regular expression tutorial" />
+        <meta name="keywords" content="javascript regular expression tutorial" />
+        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+        <link href="regex.css" rel="stylesheet" />
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.11.0/styles/default.min.css">
+        <script src="//cdn.jsdelivr.net/highlight.js/9.11.0/highlight.min.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
+    </head>
+
+    <body>
+        <div id="container">
+
+            <header class="clearfix">
+                <h1>/regex/.tutorial()</h1>
+                <nav>
+                    <ul>
+                        <li><a href="#whatIs">What is Regex?</a></li>
+                        <li><a href="#pattern">Pattern</a>
+                            <ul>
+                                <li>
+                                    <a href="#modifiers">Modifiers</a>
+                                </li>
+                                <li>
+                                    <a href="#metacharacters">Metacharacters</a>
+                                </li>
+                                <li>
+                                    <a href="#quantifiers">Quantifiers</a>
+                                </li>
+                                <li>
+                                    <a href="#brackets">Brackets</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#methods">Methods</a></li>
+                        <li><a href="#examples">Examples</a></li>
+                        <li><a href="#additional">Additional resources</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <main>
+                <span class="anchor" id="whatIs"></span>
+                <article>
+                    <h2>What is regex?</h2>
+                    <p>
+                        Regex is short for Regular Expressions, that are expressions that deal with string inputs and perform a comparison and check if the string match specified rules. In JavaScript Regular expressions are also objects that contains a number of methods, returning
+                        diverse operation results.
+                    </p>
+                    <p>
+                        Regular expressions are usually applied on input validations to ensure that the user is typing a string according to the script rules, ensuring its functionlaity, for example, a script might need a telephone number in the format (###) ### ####, and so,
+                        the regular expression is used to compare the input string to this rule and therefore validates it.
+                    </p>
+                    <p>
+                        Besides JavaScript there are some other languages that accept the use of regex. The JavaScript regex is based on the Perl language use.
+                    </p>
+                </article>
+
+                <span class="anchor" id="pattern"></span>
+                <article>
+                    <h2>Pattern</h2>
+                    <p>
+                        A regex can be defined in two ways:
+                    </p>
+                    <pre>
+                        <code>
+                            // using a shorthand notation
+                            var regex = /abc/;
+
+                            // or using the object constructor
+                            var regex = new RegExp("abc");
+                        </code>
+                    </pre>
+                    <p>
+                        Note that the pattern is only enclosed in quotation marks when using the constructor version.
+                    </p>
+
+                    <p>
+                        You can specify a modifier to make your regular expression ignore case sensitivity, for example.
+                    </p>
+
+                    <pre>
+                        <code>
+                            // looking for only uppercase ABC sequence
+                            var regex = /ABC/;
+
+                            // looking for any abc sequence
+                            var regex = /ABC/i;
+                        </code>
+                    </pre>
+
+                    <p>
+                        You can also send a RegEx as parameter in methods, using the shorthand notation:
+                    </p>
+                    <pre>
+                        <code>
+                            var search = string.search(/abc/);
+                        </code>
+                    </pre>
+
+                    <p>
+                        A RegEx can be composed by simple or special characters. The examples above consider only simple characters, that will be searched on the string like they are shown, in that specific order containing exactly those 3 letters, being one a, one b and one
+                        c, we also have to remember that capitalization matters, unless you explicitly tells using the "i" modifier. For more complex searches we should understand consider the use of the special characters on the tables below:
+                    </p>
+
+                    <span class="anchor" id="modifiers"></span>
+                    <table>
+                        <caption>
+                            Table of Modifiers
+                        </caption>
+                        <tr>
+                            <th scope="col">Character</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">g</th>
+                            <td>Looks for all matches, not stopping at the first found.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">m</th>
+                            <td>Perform a multiline search.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">i</th>
+                            <td>Ignore case sensitivity</td>
+                        </tr>
+                    </table>
+
+                    <hr />
+
+                    <span class="anchor" id="metacharacters"></span>
+                    <table>
+                        <caption>
+                            Table of Metacharacters
+                        </caption>
+                        <tr>
+                            <th scope="col">Character</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Example</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">.</th>
+                            <td>Matches any single character (except the new line character).</td>
+                            <td>"an", "on", "en", "?n".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">\</th>
+                            <td>Identify the next character according to the following rules: If the next character is a non-special is identified as a special character, not being interpreted literally. If a special character follows the backslash the character
+                                is interpreted as literal by the regular expression, also known as escaping the character.</td>
+                            <td>\n is interpreted as a new line character.<br />\' is interpreted as the single quotation mark '.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">^</th>
+                            <td>Matches the beginning of the input string.</td>
+                            <td>In "An endless story", the expression /^A/ returns true.<br />However in "an Adventure" returns false.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">$</th>
+                            <td>Matches the end of the input string.</td>
+                            <td>In "An endless story", the expression /y$/ returns true.<br />However in "cozy home" returns false.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">\w</th>
+                            <td>Matches a word character.</td>
+                            <td>In "Discount = 100%", the expression /\w/ matches "Discount100"</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">\W</th>
+                            <td>Matches a non-word character.</td>
+                            <td>In "Discount = 100%", the expression /\w/ matches " = %"</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">\d</th>
+                            <td>Matches a digit character.</td>
+                            <td>In "Discount = 100%", the expression /\w/ matches "100"</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">\D</th>
+                            <td>Matches a non-digit character.</td>
+                            <td>In "Discount = 100%", the expression /\w/ matches "Discount = %"</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">\s</th>
+                            <td>Matches a space character.</td>
+                            <td>In "Discount = 100%", the expression /\w/ matches " " (two space characters)</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">\S</th>
+                            <td>Matches a non-space character.</td>
+                            <td>In "Discount = 100%", the expression /\w/ matches "Discount=100%"</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">\b</th>
+                            <td>Matches the character at the beginning or ending of a string.</td>
+                            <td>In "discount = hundred", the expression /\bd/g matches the "d" starting and ending the string.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">\B</th>
+                            <td>Matches a non-space character.</td>
+                            <td>In "counting discounts = hundred", the expression /\Bcount/g matches the "count" in the middle of the word "discount".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">\n</th>
+                            <td>Matches a new line character.</td>
+                            <td>In the string "Lorem ispum dolor\nsit amet" the expression /\w\n/ will match "Lorem ispum dolor"</td>
+                        </tr>
+                    </table>
+
+                    <hr />
+
+                    <span class="anchor" id="quantifiers"></span>
+                    <table>
+                        <caption>
+                            Table of Quantifiers
+                        </caption>
+                        <tr>
+                            <th scope="col">Character</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Example</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">*</th>
+                            <td>Matches 0 or more occurrences of a character (equivalent to {0,}).</td>
+                            <td>The expression /ho*/ returns true in "Yahoo", "house", and in "hiccup".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">+</th>
+                            <td>Matches 1 or more occurrences of a character (equivalent to {1,}).</td>
+                            <td>The expression /ho+/ returns true in "Yahoo" and "house", and false in "hiccup".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">?</th>
+                            <td>Matches the preceding expression 0 or 1 times, as an optional (equivalent to {0,1}).</td>
+                            <td>The expression /h?o+/ returns true in "Yahoo" and "Yaoo".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">{x}</th>
+                            <td>Matches the preceding expression x or more times.</td>
+                            <td>The expression /ho{0}/ returns true in "Yahoo", "Yaho", and "Yeah".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">{x,y}</th>
+                            <td>Matches the preceding expression x to y times.</td>
+                            <td>The expression /ho{1,2}/ returns true in "Yahoo" and "Yaho", and false in "Yeah".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">{x,}</th>
+                            <td>Matches the preceding expression at least x times.</td>
+                            <td>The expression /ho{2,}/ returns true in "Yahoo" and false in "Yaho".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">?=</th>
+                            <td>Matches the any string followed by the specific string after the quantifier.</td>
+                            <td>The expression /Ya?=hoo/ returns true in "Yahoo" and "Boohoo".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">?!</th>
+                            <td>Matches the any string not followed by the specific string after the quantifier.</td>
+                            <td>The expression /Ya?!hoo/ returns false in "Yahoo" and "Boohoo" and true in "Yale" and "Boolean".</td>
+                        </tr>
+                    </table>
+                    <hr />
+
+                    <span class="anchor" id="brackets"></span>
+                    <table>
+                        <caption>
+                            Table of Brackets
+                        </caption>
+                        <tr>
+                            <th scope="col">Character</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Example</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">[xyz]</th>
+                            <td>Matches all occurrences of any character between brackets</td>
+                            <td>In the string "There it is" the expression /[he]/g matches all "h" and "e" ocurrences.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">[^xyz]</th>
+                            <td>Matches all occurrences that is not any character between brackets</td>
+                            <td>In the string "There it is" the expression /[^he]/g matches all characters that are not "h" and "e".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">[0-9]</th>
+                            <td>Matches a range of characters from 0 to 9</td>
+                            <td>In the string "1234567abc" the expression /[1-4]/ matches only "1234".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">[^0-9]</th>
+                            <td>Matches all characters not in this range 0 to 9</td>
+                            <td>In the string "1234567abc" the expression /[1-4]/ matches only "567abc".</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">(x|y)</th>
+                            <td>Matches one provided alternative or another.</td>
+                            <td>In the string "abc123def" the expression /(3|d)/ matches only the number 3, because it comes first on the order.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">(xy)</th>
+                            <td>Matches the required characters.</td>
+                            <td>In the string "abc123def" the expression /(3d)/ matches the "3d", however, if the expression was /4g/ it would return false because there is no occurrence of it on the string.</td>
+                        </tr>
+                    </table>
+                </article>
+
+                <span class="anchor" id="methods"></span>
+                <article>
+                    <h2>Methods</h2>
+                    <p>
+                        For dealing with regular expressions we can rely on two main methods for this specific object, that can work together with some methods from the String Object.
+                    </p>
+                    <table>
+                        <caption>
+                            Table of Methods
+                        </caption>
+                        <tr>
+                            <th scope="col">Methods</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">exec()</th>
+                            <td>Test for a match on a string returning true or false.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <pre>
+                                    <code>
+                                        var regex = /owl/;
+                                        var str = "The wolf howls";
+                                        regex.exec(str); // returns "owl"
+                                    </code>
+                                </pre>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">test()</th>
+                            <td>Test for a match on a string returning true or false.</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <pre>
+                                    <code>
+                                        var regex = /owl/;
+                                        var str = "The wolf howls";
+                                        regex.exec(str); // returns true
+                                    </code>
+                                </pre>
+                            </td>
+                        </tr>
+                    </table>
+                </article>
+
+                <span class="anchor" id="examples"></span>
+                <article>
+                    <h2>Examples</h2>
+                    <p>
+                        Here are a few examples on using regular expressions in a contact form.
+                    </p>
+                    <form>
+                        <label for="name">Name</label>
+                        <input name="name" id="name" type="text" />
+                        <input type="button" id="nameBtn" value="Test!" />
+                        <p id="nameReturn">
+
+                        </p>
+                        <pre>
+                            <code>
+                                function testName() {
+                                    /* this function test a name input in the following way:
+                                     * ^        anchors the beggining of string
+                                     * ()       everything that is between parenthesis is required
+                                     * ?:       the group is not captured (saved in memory) and therefore
+                                                there's no need to appear again in the expression
+                                     * \w+      has to contains one or more word characters
+                                     * [.\']?   matches any character (.) followed by a literal quote character (')
+                                                the '?' says that is optional for this to occurr
+                                     *  ?       matches a space character 0 or more times
+                                     * {1,7}    has to contain the whole expression from 1 to 7 times
+                                     *          (1 to 7 names, separated by a space char)
+                                     * $        anchors the end of the string
+                                     */
+                                    var regex = /^(?:\w+[.\']? ?){1,7}$/;
+                                    var name = document.getElementById("name").value;
+                                    var returnVal = document.getElementById("nameReturn");
+                                    returnVal.innerHTML = "Returns: " + regex.test(name);
+                                }
+                            </code>
+                        </pre>
+
+                        <br />
+                        <label for="email">Email</label>
+                        <input name="email" id="email" type="email" />
+                        <input type="button" id="emailBtn" value="Test!" />
+                        <p id="emailReturn">
+
+                        </p>
+                        <pre>
+                            <code>
+                                function testEmail() {
+                                    /* this function test an email input in the following way:
+                                     * ^                anchors the beggining of string
+                                     * [_\w\-]+         must have word characters or "_" (underscore character)
+                                                        or "-" (dash) one or more times
+                                     * (\.[_\w\-]+)*    should to contain any character followed by any of those
+                                                        described above 0 or more times
+                                     * @                must have an "@" character
+                                     * [_\w\-]+         must have word characters or "_" (underscore character)
+                                                        or "-" (dash) one or more times
+                                     * (\.[_\w\-]+)*    should to contain any character followed by any of those
+                                                        described above 0 or more times
+                                     * (\.[\D]{2,6})    must have a "." character followed by a non-digit
+                                                        from 2 to 6 times
+                                     * $                anchors the end of the string
+                                     */
+                                    var regex = /^[_\w\-]+(\.[_\w\-]+)*@[\w\-]+(\.[\w\-]+)*(\.[\D]{2,6})$/;
+                                    var email = document.getElementById("email").value;
+                                    var returnVal = document.getElementById("emailReturn");
+                                    returnVal.innerHTML = "Returns: " + regex.test(email);
+                                }
+                            </code>
+                        </pre>
+                    </form>
+                </article>
+
+                <span class="anchor" id="additional"></span>
+                <article>
+                    <h2>Additional Resources</h2>
+                    <p>
+                        There are lots of resources online for understanding better how regular expressions works, and lots of regular expressions for you to try. Being so an extensive subject is hard to find the perfect regular expression and it will depend on the application
+                        you're looking for your work.
+                    </p>
+                    <p>
+                        Some good resources that explain clearly and provide examples and documentation are:
+                    </p>
+                    <ul>
+                        <li>
+                            <a href="//www.w3schools.com/jsref/jsref_obj_regexp.asp" target="_blank">W3 Schools</a>
+                        </li>
+                        <li>
+                            <a href="//developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank">Mozilla Developer Network</a>
+                        </li>
+                    </ul>
+                    <p>
+                        And you also can count with a forum, where you can find questions from the community and also can post your question and get some help:
+                    </p>
+                    <ul>
+
+                        <li>
+                            <a href="//stackoverflow.com/questions/tagged/regex" target="_blank">Stack Overflow</a>
+                        </li>
+                    </ul>
+                    <p>
+                        And you can test and learn more about regex in:
+                    </p>
+                    <ul>
+                        <li>
+                            <a href="//regex101.com/" target="_blank">Regex101</a>
+                        </li>
+                        <li>
+                            <a href="//regexr.com/" target="_blank">RegExr</a>
+                        </li>
+                    </ul>
+                </article>
+
+            </main>
+
+            <footer class="clearfix">
+                <div class="row">
+                    <div class="col1">
+                        <p>
+                            Made with &hearts; by <a href="https://fabriciotex.github.io">fabriciotex</a>.
+                        </p>
+                        <p>
+                            Coding highlight provided by <a href="//highlightjs.org/" target="_blank">highlight.js</a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+
+            <script src="regex.js"></script>
+        </div>
+    </body>
+
+</html>

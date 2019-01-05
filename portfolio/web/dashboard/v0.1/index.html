@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<title>Dashboard - Última Posição</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link type="text/css" rel="stylesheet" href="https://necolas.github.io/normalize.css/5.0.0/normalize.css">
+		<link type="text/css" rel="stylesheet" href="css/styles.css">
+	</head>
+	<body>
+
+		<header id="header">
+			<div id="logo"><h1>Logo</h1></div>
+		</header>
+		
+		<nav>
+			<ul>
+				<a href="index.html"><li>Última Posição</li></a>
+				<a href="rota.html"><li>Rotas</li></a>
+			</ul>
+		</nav>
+		
+		<main>
+			<section id="formandresult">
+				<form onsubmit="return false">
+          <label for="state">Estado: </label>
+					<select name="state" id="state"></select>
+					<label for="city">Cidade: </label>
+          <select name="city" id="city" onchange="javascript:query(this)">
+            <option>Selecione a Cidade</option>
+          </select>
+          <label for="userQuery" id="userQueryLbl">Usuário: </label>
+          <input type="text" name="userQuery" id="userQuery" placeholder="Insira a ID do usuário (ex. u0001)">
+          <button type="button" name="submit" id="submit" onclick="javascript:uQuery(this)"><small>Pesquisar</small></button>
+				</form>
+        <div id="result"></div>
+			</section>
+
+			<section id="map">
+			</section>
+		</main>
+
+		<footer>
+			<p><small>2016 &copy; Dashboard por @fabriciotex</small></p>
+		</footer>
+
+
+		<script src="js/userdb.js"></script>
+		<script src="js/script.js"></script>
+
+		<!-- GMaps API -->
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2xAs2_CN7ONofCJXVnA52AMc3Dq18YJM&v=3&callback=initMap"></script>
+
+	</body>
+</html>

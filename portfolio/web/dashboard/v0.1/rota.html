@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard - Rotas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link type="text/css" rel="stylesheet" href="https://necolas.github.io/normalize.css/5.0.0/normalize.css">
+		<link type="text/css" rel="stylesheet" href="css/styles.css">
+	</head>
+	<body>
+
+		<header id="header">
+			<div id="logo"><h1>Logo</h1></div>
+		</header>
+		
+		<nav>
+			<ul>
+				<a href="index.html"><li>Última Posição</li></a>
+				<a href="rota.html"><li>Rotas</li></a>
+			</ul>
+		</nav>
+		
+		<main>
+			<section id="formandresult">
+				<form onsubmit="return false">
+          <label for="userId">Usuário:</label>
+          <input type="text" name="userId" id="userId" placeholder="Insira a ID do usuário"><br>
+          <label for="fromDate">De:</label>
+					<input type="date" name="fromDate" id="fromDate">
+          <br>
+					<label for="toDate">Até:</label>
+					<input type="date" name="toDate" id="toDate">
+          <br>
+          <button type="button" onclick="javascript:query()">Filtrar</button>
+          <button type="button" onclick="javascript:clearAll()">Limpar</button>
+				</form>
+        <div id="result">
+          <header></header>
+          <main id="users">
+						<ul id="userList"></ul>
+					</main>
+        </div>
+			</section>
+
+			<section id="map">
+			</section>
+		</main>
+
+		<footer>
+			<p><small>2016 &copy; Dashboard by @fabriciotex</small></p>
+		</footer>
+    
+    <script src="js/userdb.js"></script>
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/rotas.js"></script>
+
+		<!-- GMaps API -->
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2xAs2_CN7ONofCJXVnA52AMc3Dq18YJM&v=3&callback=initMap"></script>
+
+	</body>
+</html>

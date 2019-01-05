@@ -1,0 +1,40 @@
+.center {
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}
+
+form {
+    width: 40%;
+    margin: auto;
+}
+
+form h2 {
+    text-align: center;
+}
+
+fieldset {
+    border: .1em solid #9b59b6;
+    margin-bottom: 1em
+}
+
+input, textarea {
+    margin-bottom: 1em;
+    padding: 1em;
+}
+
+input, label, textarea {
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    margin: auto;
+    border: 1em solid #f1c40f;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    border: 1em solid #9b59b6;
+}
