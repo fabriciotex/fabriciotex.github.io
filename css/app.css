@@ -1,152 +1,167 @@
+article,
 body,
 header,
 html,
+main,
 section {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
+article,
 header,
 section {
-    display: table;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
+  display: table;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 
 .bg-dark {
-    background-color: #3F51B5 !important;
+  background-color: #3F51B5 !important;
 }
 
 .vcenter {
-    display: table-cell;
-    vertical-align: middle;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .imgLink {
-    cursor: pointer;
-    width: 100%;
+  cursor: pointer;
+  width: 100%;
 }
 
 .modal-body img {
-    width: 100%;
+  width: 100%;
 }
 
 .modal-content {
-    background-color: rgba(255, 255, 255, .7);
+  background-color: rgba(255, 255, 255, .7);
 }
 
 .modal-footer,
 .modal-header {
-    border-color: rgba(158, 158, 158, .8);
+  border-color: rgba(158, 158, 158, .8);
 }
 
 .img1x {
-    display: block;
+  display: block;
 }
 
 .img2x {
-    display: none;
+  display: none;
 }
 
 .img4x {
-    display: none;
+  display: none;
 }
 
 #home {
-    background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/home1x.jpg");
+  background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/home1x.jpg");
 }
 
 #about {
-    background: linear-gradient(rgba(158, 158, 158, .95), rgba(158, 158, 158, .8)), url("../img/about1x.jpg");
+  background: linear-gradient(rgba(158, 158, 158, .95), rgba(158, 158, 158, .8)), url("../img/about1x.jpg");
 }
 
 #portfolio {
-    background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/portfolio1x.jpg");
+  background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/portfolio1x.jpg");
 }
 
 #contact {
-    background: linear-gradient(rgba(158, 158, 158, .8), rgba(158, 158, 158, .8)), url("../img/contact1x.jpg");
+  background: linear-gradient(rgba(158, 158, 158, .8), rgba(158, 158, 158, .8)), url("../img/contact1x.jpg");
 }
 
 #portfolio img {
-    background-color: rgba(63, 81, 181, .7);
-    transition: all .2s ease-in-out;
+  background-color: rgba(63, 81, 181, .7);
+  transition: all .2s ease-in-out;
 }
 
 #portfolio img:hover {
-    transform: scale(1.1);
-    background-color: rgba(63, 81, 181, .8);
+  transform: scale(1.1);
+  background-color: rgba(63, 81, 181, .8);
+}
+
+.btn-bk {
+  color: #FFF;
+  background-color: #444;
+  border-color: #444;
+}
+
+.btn-bk:hover {
+  color: #FFF;
+  background-color: #333;
+  border-color: #333;
 }
 
 img.svg {
-    width: 100%;
+  width: 100%;
 }
 
 video {
-    width: 100%;
+  width: 100%;
 }
 
 @media (min-width: 992px) {
-    .p-3 {
-        padding: 3rem !important;
-    }
+  .p-3 {
+    padding: 3rem !important;
+  }
 
-    .img1x {
-        display: none;
-    }
+  .img1x {
+    display: none;
+  }
 
-    .img2x {
-        display: block;
-    }
+  .img2x {
+    display: block;
+  }
 
-    .img4x {
-        display: none;
-    }
+  .img4x {
+    display: none;
+  }
 
-    #home {
-        background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/home2x.jpg");
-    }
+  #home {
+    background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/home2x.jpg");
+  }
 
-    #about {
-        background: linear-gradient(rgba(158, 158, 158, .95), rgba(158, 158, 158, .8)), url("../img/about2x.jpg");
-    }
+  #about {
+    background: linear-gradient(rgba(158, 158, 158, .95), rgba(158, 158, 158, .8)), url("../img/about2x.jpg");
+  }
 
-    #portfolio {
-        background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/portfolio2x.jpg");
-    }
+  #portfolio {
+    background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/portfolio2x.jpg");
+  }
 
-    #contact {
-        background: linear-gradient(rgba(158, 158, 158, .8), rgba(158, 158, 158, .8)), url("../img/contact2x.jpg");
-    }
+  #contact {
+    background: linear-gradient(rgba(158, 158, 158, .8), rgba(158, 158, 158, .8)), url("../img/contact2x.jpg");
+  }
 }
 
 @media (min-width: 1984px) {
-    .img1x {
-        display: none;
-    }
+  .img1x {
+    display: none;
+  }
 
-    .img2x {
-        display: none;
-    }
+  .img2x {
+    display: none;
+  }
 
-    .img4x {
-        display: block;
-    }
+  .img4x {
+    display: block;
+  }
 
-    #home {
-        background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/home4x.jpg");
-    }
+  #home {
+    background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/home4x.jpg");
+  }
 
-    #about {
-        background: linear-gradient(rgba(158, 158, 158, .95), rgba(158, 158, 158, .8)), url("../img/about4x.jpg");
-    }
+  #about {
+    background: linear-gradient(rgba(158, 158, 158, .95), rgba(158, 158, 158, .8)), url("../img/about4x.jpg");
+  }
 
-    #portfolio {
-        background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/portfolio4x.jpg");
-    }
+  #portfolio {
+    background: linear-gradient(rgba(63, 81, 181, .7), rgba(63, 81, 181, .7)), url("../img/portfolio4x.jpg");
+  }
 
-    #contact {
-        background: linear-gradient(rgba(158, 158, 158, .8), rgba(158, 158, 158, .8)), url("../img/contact4x.jpg");
-    }
+  #contact {
+    background: linear-gradient(rgba(158, 158, 158, .8), rgba(158, 158, 158, .8)), url("../img/contact4x.jpg");
+  }
 }
